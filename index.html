@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maximiliano del Caño — Estrategia, diseño y código</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Geist+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --carbon: oklch(13.5% 0.010 62);
+      --slate: oklch(17.5% 0.012 62);
+      --chalk: oklch(94.5% 0.007 88);
+      --chalk-2: oklch(96.5% 0.005 90);
+      --graphite: oklch(17% 0.010 62);
+      --bone: oklch(92% 0.008 80);
+      --stone: oklch(55% 0.013 68);
+      --claret: oklch(36% 0.130 22);
+      --claret-m: oklch(48% 0.138 20);
+      --claret-l: oklch(62% 0.130 18);
+      --ld: oklch(92% 0.008 80 / 0.13);
+      --ll: oklch(17% 0.010 62 / 0.10);
+      --maxw: 1160px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+      background: var(--chalk);
+      color: var(--graphite);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    /* ---- layout ---- */
+    .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 6vw;
+    }
+
+    section {
+      position: relative;
+    }
+
+    .band {
+      padding: 130px 0;
+    }
+
+    .band-dark {
+      background: var(--carbon);
+      color: var(--bone);
+    }
+
+    .band-alt {
+      background: var(--chalk-2);
+    }
+
+    /* ---- reveal ---- */
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(28px) scale(0.985);
+      transition: opacity .8s cubic-bezier(.16, 1, .3, 1), transform .8s cubic-bezier(.16, 1, .3, 1);
+      will-change: opacity, transform;
+    }
+
+    [data-reveal].in {
+      opacity: 1;
+      transform: none;
+      will-change: auto;
+    }
+
+    /* ---- progress bar ---- */
+    .progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 2px;
+      background: var(--claret);
+      width: 0;
+      z-index: 50;
+      transition: width 80ms linear;
+    }
+
+    /* ---- side rail ---- */
+    .rail {
+      position: fixed;
+      left: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 40;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .rail a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-family: 'Geist Mono', monospace;
+      font-size: .6rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--stone);
+      transition: color .25s ease;
+    }
+
+    .rail .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      border: 1px solid var(--stone);
+      background: transparent;
+      transition: background .22s cubic-bezier(.16, 1, .3, 1),
+        border-color .22s cubic-bezier(.16, 1, .3, 1),
+        transform .22s cubic-bezier(.16, 1, .3, 1);
+      flex: none;
+    }
+
+    .rail a .lbl {
+      opacity: 0;
+      transform: translateX(-4px);
+      transition: opacity .2s cubic-bezier(.16, 1, .3, 1), transform .2s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    .rail a:hover .lbl,
+    .rail a.active .lbl {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .rail a:hover .dot {
+      transform: scale(1.15);
+    }
+
+    .rail a.active {
+      color: var(--graphite);
+    }
+
+    .rail a.active .dot {
+      background: var(--claret);
+      border-color: var(--claret);
+      transform: scale(1.35);
+    }
+
+    .rail.on-dark a {
+      color: oklch(92% 0.008 80 / 0.42);
+    }
+
+    .rail.on-dark a .dot {
+      border-color: oklch(92% 0.008 80 / 0.38);
+    }
+
+    .rail.on-dark a.active {
+      color: var(--bone);
+    }
+
+    /* ---- HERO ---- */
+    .hero {
+      background: var(--carbon);
+      color: var(--bone);
+      min-height: 100dvh;
+      display: flex;
+      align-items: flex-end;
+      padding: 100px 0 72px;
+    }
+
+    .hero-inner {
+      width: 100%;
+    }
+
+    .hero-name {
+      font-family: 'Geist Mono', monospace;
+      font-size: .66rem;
+      letter-spacing: .20em;
+      text-transform: uppercase;
+      color: var(--stone);
+      display: block;
+      margin-bottom: 44px;
+    }
+
+    .hero h1 {
+      font-variation-settings: 'opsz' 96, 'wght' 220;
+      font-size: clamp(3rem, 8.5vw, 7rem);
+      line-height: .96;
+      letter-spacing: -.028em;
+      max-width: 17ch;
+      margin-bottom: 36px;
+    }
+
+    .hero h1 .hl {
+      background: var(--claret);
+      color: var(--bone);
+      padding: 0 .1em .02em;
+      border-radius: 2px;
+      font-variation-settings: 'opsz' 96, 'wght' 460;
+      display: inline;
+    }
+
+    .hero .sub {
+      max-width: 42ch;
+      font-variation-settings: 'opsz' 14, 'wght' 370;
+      font-size: 1.04rem;
+      line-height: 1.70;
+      color: oklch(92% 0.008 80 / 0.68);
+      margin-bottom: 54px;
+    }
+
+    .loop-bar {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0;
+      padding-top: 20px;
+      border-top: 1px solid var(--ld);
+    }
+
+    .loop-bar .step {
+      font-family: 'Geist Mono', monospace;
+      font-size: .66rem;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      color: oklch(92% 0.008 80 / 0.40);
+      white-space: nowrap;
+    }
+
+    .loop-bar .arr {
+      color: var(--claret-l);
+      margin: 0 13px;
+      font-size: .68rem;
+    }
+
+    /* ---- TESIS ---- */
+    .tesis-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 90px;
+      align-items: start;
+    }
+
+    .tesis h2 {
+      font-variation-settings: 'opsz' 48, 'wght' 270;
+      font-size: clamp(1.9rem, 4.2vw, 3.2rem);
+      line-height: 1.06;
+      letter-spacing: -.022em;
+      position: sticky;
+      top: 64px;
+    }
+
+    .tesis .body {
+      font-variation-settings: 'opsz' 14, 'wght' 375;
+      font-size: 1.06rem;
+      line-height: 1.73;
+    }
+
+    .tesis .body p {
+      margin-bottom: 1.15em;
+    }
+
+    .tesis .body p:last-child {
+      margin-bottom: 0;
+    }
+
+    .tesis .body strong {
+      font-variation-settings: 'opsz' 14, 'wght' 600;
+    }
+
+    /* ---- CASE HEAD ---- */
+    .case-head {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0 20px;
+      align-items: baseline;
+    }
+
+    .case-head .idx {
+      font-variation-settings: 'opsz' 96, 'wght' 200;
+      font-size: clamp(4.5rem, 13vw, 10rem);
+      color: var(--claret);
+      line-height: .87;
+      letter-spacing: -.04em;
+      flex: none;
+      transition: color .2s ease;
+    }
+
+    .band-dark .case-head .idx {
+      color: var(--claret-l);
+    }
+
+    .case-head .ttl {
+      font-variation-settings: 'opsz' 72, 'wght' 255;
+      font-size: clamp(2.4rem, 6vw, 4.8rem);
+      letter-spacing: -.026em;
+      line-height: .90;
+    }
+
+    .case-head .case-meta {
+      font-family: 'Geist Mono', monospace;
+      font-size: .65rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--stone);
+      margin-top: 12px;
+    }
+
+    .band-dark .case-head .case-meta {
+      color: oklch(92% 0.008 80 / 0.38);
+    }
+
+    .case-tagline {
+      font-variation-settings: 'opsz' 20, 'wght' 290;
+      font-size: clamp(1.1rem, 2.1vw, 1.48rem);
+      color: var(--stone);
+      margin-top: 20px;
+      max-width: 34ch;
+      letter-spacing: -.012em;
+      line-height: 1.28;
+      font-style: italic;
+    }
+
+    .band-dark .case-tagline {
+      color: oklch(92% 0.008 80 / 0.46);
+    }
+
+    /* ---- loop motif ---- */
+    .loop {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0;
+      align-items: center;
+      margin: 52px 0 8px;
+      padding: 17px 0;
+      border-top: 1px solid var(--ll);
+      border-bottom: 1px solid var(--ll);
+    }
+
+    .band-dark .loop {
+      border-color: var(--ld);
+    }
+
+    .loop .stg {
+      font-family: 'Geist Mono', monospace;
+      font-size: .66rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--stone);
+      position: relative;
+      padding-left: 18px;
+    }
+
+    .loop .stg::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      border: 1px solid var(--stone);
+      background: transparent;
+    }
+
+    .loop .stg.lit {
+      color: var(--claret);
+    }
+
+    .band-dark .loop .stg.lit {
+      color: var(--claret-l);
+    }
+
+    .loop .stg.lit::before {
+      background: var(--claret);
+      border-color: var(--claret);
+    }
+
+    .band-dark .loop .stg.lit::before {
+      background: var(--claret-l);
+      border-color: var(--claret-l);
+    }
+
+    .loop .sep {
+      width: 22px;
+      height: 1px;
+      background: var(--ll);
+      margin: 0 6px;
+    }
+
+    .band-dark .loop .sep {
+      background: var(--ld);
+    }
+
+    /* ---- arc grid ---- */
+    .arc {
+      margin-top: 56px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 44px 60px;
+    }
+
+    .arc .blk .k {
+      font-family: 'Geist Mono', monospace;
+      font-size: .65rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--claret);
+      margin-bottom: 14px;
+    }
+
+    .band-dark .arc .blk .k {
+      color: var(--claret-l);
+    }
+
+    .arc .blk p {
+      font-variation-settings: 'opsz' 14, 'wght' 375;
+      font-size: 1.02rem;
+      line-height: 1.68;
+      max-width: 44ch;
+    }
+
+    /* ---- inset ---- */
+    .inset {
+      margin-top: 66px;
+      background: var(--slate);
+      color: var(--bone);
+      border-radius: 2px;
+      padding: 50px clamp(28px, 5vw, 60px);
+    }
+
+    .inset .k {
+      color: var(--claret-l);
+    }
+
+    .stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 22px;
+    }
+
+    .chip {
+      font-family: 'Geist Mono', monospace;
+      font-size: .66rem;
+      letter-spacing: .06em;
+      border: 1px solid var(--ld);
+      color: oklch(92% 0.008 80 / 0.76);
+      padding: 6px 13px;
+      border-radius: 2px;
+      transition: border-color .18s ease, color .18s ease, transform .14s cubic-bezier(.16, 1, .3, 1);
+      cursor: default;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .chip:hover {
+        border-color: var(--claret-l);
+        color: var(--bone);
+        transform: translateY(-1px);
+      }
+    }
+
+    .chip:active {
+      transform: translateY(0) scale(0.97);
+    }
+
+    .inset .arc {
+      margin-top: 40px;
+    }
+
+    .inset .arc .blk p {
+      color: oklch(92% 0.008 80 / 0.76);
+    }
+
+    /* ---- pull quote ---- */
+    .pull {
+      font-variation-settings: 'opsz' 28, 'wght' 270;
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      line-height: 1.24;
+      margin-top: 64px;
+      max-width: 24ch;
+      letter-spacing: -.018em;
+      font-style: italic;
+    }
+
+    .pull span {
+      color: var(--claret);
+    }
+
+    .band-dark .pull span {
+      color: var(--claret-l);
+    }
+
+    /* ---- market note (OASIS) ---- */
+    .market-note {
+      margin-top: 50px;
+      max-width: 50ch;
+      border-left: 2px solid var(--claret-l);
+      padding-left: 24px;
+    }
+
+    .market-note .k {
+      font-family: 'Geist Mono', monospace;
+      font-size: .65rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--claret-l);
+      margin-bottom: 12px;
+    }
+
+    .market-note p {
+      font-variation-settings: 'opsz' 14, 'wght' 375;
+      font-size: 1.02rem;
+      line-height: 1.68;
+      color: oklch(92% 0.008 80 / 0.72);
+    }
+
+    /* ---- timeline (Midas) ---- */
+    .timeline {
+      margin-top: 54px;
+      border-left: 2px solid var(--claret);
+      padding-left: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    .timeline .row {
+      position: relative;
+    }
+
+    .timeline .row::before {
+      content: "";
+      position: absolute;
+      left: -40px;
+      top: 5px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--claret);
+      box-shadow: 0 0 0 3px var(--chalk);
+    }
+
+    .timeline .yr {
+      font-family: 'Geist Mono', monospace;
+      font-size: .68rem;
+      letter-spacing: .12em;
+      color: var(--stone);
+      margin-bottom: 9px;
+    }
+
+    .timeline .row p {
+      font-variation-settings: 'opsz' 14, 'wght' 375;
+      font-size: 1.03rem;
+      line-height: 1.66;
+      max-width: 50ch;
+    }
+
+    /* ---- MAS grid ---- */
+    .mas-wrap {
+      padding: 100px 0 110px;
+    }
+
+    .mas-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--ld);
+      border: 1px solid var(--ld);
+    }
+
+    .mas-cell {
+      padding: 38px 30px;
+      transition: opacity .2s ease, transform .16s cubic-bezier(.16, 1, .3, 1);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .mas-cell:hover {
+        opacity: .86;
+      }
+    }
+
+    .mas-cell:active {
+      transform: scale(0.99);
+      opacity: .82;
+    }
+
+    .mas-cell .cell-label {
+      font-family: 'Geist Mono', monospace;
+      font-size: .64rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .mas-cell h3 {
+      font-variation-settings: 'opsz' 18, 'wght' 480;
+      font-size: 1.26rem;
+      margin-top: 16px;
+      letter-spacing: -.015em;
+    }
+
+    .mas-cell p {
+      font-variation-settings: 'opsz' 14, 'wght' 370;
+      margin-top: 10px;
+      font-size: .96rem;
+      line-height: 1.60;
+    }
+
+    /* ---- CONTACTO ---- */
+    .contacto {
+      background: var(--carbon);
+      color: var(--bone);
+      padding: 140px 0 100px;
+    }
+
+    .contacto h2 {
+      font-variation-settings: 'opsz' 64, 'wght' 240;
+      font-size: clamp(2rem, 5.2vw, 3.8rem);
+      line-height: 1.04;
+      letter-spacing: -.026em;
+      max-width: 17ch;
+    }
+
+    .contacto h2 em {
+      font-style: italic;
+      color: var(--claret-l);
+      font-variation-settings: 'opsz' 64, 'wght' 300;
+    }
+
+    .contacto .links {
+      margin-top: 52px;
+      display: flex;
+      flex-direction: column;
+      max-width: 420px;
+    }
+
+    .contacto .links a {
+      font-family: 'Geist Mono', monospace;
+      font-size: .86rem;
+      letter-spacing: .04em;
+      color: var(--bone);
+      text-decoration: none;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--ld);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: color .2s ease, padding-left .2s cubic-bezier(.16, 1, .3, 1), transform .1s ease;
+    }
+
+    .contacto .links a .arr-r {
+      color: var(--claret-l);
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: opacity .2s ease, transform .2s cubic-bezier(.16, 1, .3, 1);
+      font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+      font-variation-settings: 'wght' 300;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .contacto .links a:hover {
+        color: var(--claret-l);
+        padding-left: 10px;
+      }
+
+      .contacto .links a:hover .arr-r {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .contacto .links a:active {
+      transform: scale(0.98);
+    }
+
+    .contacto .foot {
+      margin-top: 68px;
+      font-family: 'Geist Mono', monospace;
+      font-size: .64rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: oklch(92% 0.008 80 / 0.35);
+    }
+
+    a:focus-visible {
+      outline: 2px solid var(--claret);
+      outline-offset: 3px;
+    }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 900px) {
+      .rail {
+        display: none;
+      }
+
+      .tesis-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .tesis h2 {
+        position: static;
+      }
+
+      .arc {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .mas-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .band {
+        padding: 88px 0;
+      }
+
+      .wrap {
+        padding: 0 7vw;
+      }
+
+      .loop {
+        flex-wrap: wrap;
+        gap: 8px 0;
+      }
+
+      .loop .sep {
+        width: 14px;
+      }
+
+      .case-head {
+        gap: 0 14px;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .hero h1 {
+        font-size: clamp(2.5rem, 12vw, 3.4rem);
+      }
+
+      .case-head .idx {
+        font-size: clamp(3.2rem, 17vw, 5rem);
+      }
+
+      .case-head .ttl {
+        font-size: clamp(1.9rem, 8.5vw, 2.8rem);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      [data-reveal] {
+        opacity: 1;
+        transform: none;
+        transition: none;
+        will-change: auto;
+      }
+
+      .contacto .links a,
+      .contacto .links a .arr-r,
+      .chip,
+      .mas-cell,
+      .rail .dot,
+      .rail a .lbl,
+      .progress {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="progress" id="progress"></div>
+
+  <nav class="rail" id="rail" aria-label="Secciones">
+    <a href="#hero" data-sec="hero"><span class="dot"></span><span class="lbl">Inicio</span></a>
+    <a href="#tesis" data-sec="tesis"><span class="dot"></span><span class="lbl">Método</span></a>
+    <a href="#gastro" data-sec="gastro"><span class="dot"></span><span class="lbl">Gastro</span></a>
+    <a href="#oasis" data-sec="oasis"><span class="dot"></span><span class="lbl">OASIS</span></a>
+    <a href="#midas" data-sec="midas"><span class="dot"></span><span class="lbl">Midas</span></a>
+    <a href="#mas" data-sec="mas"><span class="dot"></span><span class="lbl">Más</span></a>
+    <a href="#contacto" data-sec="contacto"><span class="dot"></span><span class="lbl">Contacto</span></a>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="hero">
+    <div class="wrap hero-inner">
+      <span class="hero-name" data-reveal>Max del Caño</span>
+      <h1 data-reveal>Diseñar pantallas tiene reglas. <span class="hl">Resolver</span> problemas, ninguna.</h1>
+      <p class="sub" data-reveal>Mientras que para uno existen principios de diseño, usabilidad, patrones que funcionan.
+        Para el otro es el terreno opuesto: sin método ni manual y una cantidad infinita de caminos por explorar. Ahí
+        está la parte difícil, y la que de verdad importa.</p>
+      <div class="loop-bar" data-reveal>
+        <span class="step">Estrategia</span><span class="arr">→</span>
+        <span class="step">Posicionamiento</span><span class="arr">→</span>
+        <span class="step">Diseño</span><span class="arr">→</span>
+        <span class="step">Código</span><span class="arr">→</span>
+        <span class="step">Lanzamiento</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESIS ============ -->
+  <section class="band tesis" id="tesis">
+    <div class="wrap">
+      <div class="tesis-inner">
+        <h2 data-reveal>Mi formación no fue lineal. Esa es la ventaja.</h2>
+        <div class="body" data-reveal>
+          <p>Empecé en publicidad, seguí en diseño gráfico, aprendí a programar y terminé en investigación de usuarios.
+            La curiosidad y las ganas de entender me fueron llevando de un lado al otro.</p>
+          <p>Mi oficio es <strong>entender por qué un negocio necesita algo, traducirlo en una
+              idea, darle forma y dejarlo andando.</strong> No paso el problema a otro equipo en cada etapa. Lo llevo de
+            punta a punta.</p>
+          <p>Y nunca desde un solo asiento. Fui fundador, empleado en empresas tradicionales, UX en un startup y
+            vendedor en una feria. Cuando viste el mismo problema desde todos los lugares del organigrama, lo leés
+            distinto: sabés qué le importa a cada uno y dónde se traba.</p>
+          <p>Lo que sigue no está ordenado por disciplina ni por prolijidad cronológica, sino por cómo cada caso muestra
+            una cara distinta de la misma forma de trabajar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CASO 01 — GASTRO ============ -->
+  <section class="band band-alt case" id="gastro">
+    <div class="wrap">
+      <div class="case-head" data-reveal>
+        <span class="idx">01</span>
+        <div>
+          <h2 class="ttl">Gastro</h2>
+          <p class="case-meta">SaaS B2B · Producto propio · Fundador</p>
+        </div>
+      </div>
+      <p class="case-tagline" data-reveal>El copiloto financiero del restaurante.</p>
+
+      <div class="loop" data-reveal>
+        <span class="stg lit">Estrategia</span><span class="sep"></span>
+        <span class="stg lit">Posicionamiento</span><span class="sep"></span>
+        <span class="stg lit">Diseño</span><span class="sep"></span>
+        <span class="stg lit">Código</span><span class="sep"></span>
+        <span class="stg lit">Lanzamiento</span>
+      </div>
+
+      <div class="arc" data-reveal>
+        <div class="blk">
+          <p class="k">El problema</p>
+          <p>Los dueños de bares y restaurantes saben cuánto facturan. Casi ninguno sabe cuánto gana. La plata entra y
+            sale todos los días, pero subir un precio o cortar un plato se decide a ojo.</p>
+        </div>
+        <div class="blk">
+          <p class="k">La lectura</p>
+          <p>No faltaban datos, faltaba lectura. No necesitaban otro sistema de caja: necesitaban que alguien les dijera
+            qué hacer con los números que ya tenían.</p>
+        </div>
+        <div class="blk">
+          <p class="k">El posicionamiento</p>
+          <p>Por eso Gastro no se vende como un POS. Se vende como un copiloto. «Sabés cuánto facturás. ¿Sabés cuánto
+            ganás?»</p>
+        </div>
+        <div class="blk">
+          <p class="k">El diseño</p>
+          <p>Diseñé los módulos alrededor de decisiones, no de planillas: cierre de turno, ingeniería de menú, punto de
+            equilibrio, proveedores. Cada pantalla termina en una recomendación, no en una tabla.</p>
+        </div>
+      </div>
+
+      <div class="inset" data-reveal>
+        <p class="k"
+          style="font-family:'Geist Mono',monospace;font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;">Y
+          además lo construí</p>
+        <div class="stack">
+          <span class="chip">Next.js</span>
+          <span class="chip">TypeScript</span>
+          <span class="chip">Prisma</span>
+          <span class="chip">PostgreSQL</span>
+          <span class="chip">NextAuth</span>
+        </div>
+        <div class="arc">
+          <div class="blk">
+            <p class="k">El build</p>
+            <p>Roles multiusuario, dashboards en tiempo real. El producto que diseñé es, exactamente, el producto que
+              está corriendo. No hubo traducción que se perdiera en el camino.</p>
+          </div>
+          <div class="blk">
+            <p class="k">El lanzamiento</p>
+            <p>Salida en tres fases: red de fundadores, contenido que da credibilidad y alianzas con contadores. El
+              mismo criterio con que lo diseñé lo usé para venderlo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CASO 02 — OASIS ============ -->
+  <section class="band band-dark case" id="oasis">
+    <div class="wrap">
+      <div class="case-head" data-reveal>
+        <span class="idx">02</span>
+        <div>
+          <h2 class="ttl">OASIS</h2>
+          <p class="case-meta">iGaming · Plataforma white-label · UX de producto</p>
+        </div>
+      </div>
+      <p class="case-tagline" data-reveal>Un casino diseñado para cuidar al que juega.</p>
+
+      <div class="loop" data-reveal>
+        <span class="stg lit">Estrategia</span><span class="sep"></span>
+        <span class="stg">Posicionamiento</span><span class="sep"></span>
+        <span class="stg lit">Diseño</span><span class="sep"></span>
+        <span class="stg">Código</span><span class="sep"></span>
+        <span class="stg lit">Lanzamiento</span>
+      </div>
+
+      <div class="arc" data-reveal>
+        <div class="blk">
+          <p class="k">El problema</p>
+          <p>El iGaming vive de la permanencia: cuanto más tiempo y más plata, mejor para la casa. Diseñar «bien» ahí
+            suele querer decir diseñar para que nadie pare. Fuimos por lo contrario, sin romper el negocio.</p>
+        </div>
+        <div class="blk">
+          <p class="k">La salud del usuario</p>
+          <p>Metí fricción a propósito: cada cierto tiempo en el sitio, un pequeño rompecabezas para resolver. Un corte
+            consciente, no un bloqueo. Y control permanente de pérdidas y ganancias en un dashboard limpio, donde el
+            número se ve sin tener que buscarlo.</p>
+        </div>
+        <div class="blk">
+          <p class="k">La forma, sin inventos</p>
+          <p>Ninguna de esas pantallas es ingeniosa ni nueva. Son patrones claros y legibles, los que ya funcionan. El
+            diseño difícil estaba en otro lado.</p>
+        </div>
+        <div class="blk">
+          <p class="k">El negocio</p>
+          <p>Del lado comercial empujamos los juegos nuevos en la home en lugar de estancarla en los clásicos que
+            «funcionan». Así el catálogo no se muere y la industria se alimenta de la factoría de proveedores.</p>
+        </div>
+      </div>
+
+      <p class="pull" data-reveal>Lo difícil nunca fue cómo mostrarlo. Fue convencer de que mostrarlo, y que el usuario
+        <span>frenara</span>, también le convenía al negocio.
+      </p>
+
+      <div class="market-note" data-reveal>
+        <p class="k">En el mercado</p>
+        <p>Viajé a ferias del sector como embajador y sales: generé contactos y defendí el producto cara a cara con los
+          líderes de la industria.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CASO 03 — MIDAS ============ -->
+  <section class="band case" id="midas">
+    <div class="wrap">
+      <div class="case-head" data-reveal>
+        <span class="idx">03</span>
+        <div>
+          <h2 class="ttl">Grupo Midas</h2>
+          <p class="case-meta">Bingos · 4 salas · 2007 hasta hoy</p>
+        </div>
+      </div>
+      <p class="case-tagline" data-reveal>Diecisiete años, el mismo cliente, cada vez más cerca del negocio.</p>
+
+      <div class="loop" data-reveal>
+        <span class="stg lit">Estrategia</span><span class="sep"></span>
+        <span class="stg">Posicionamiento</span><span class="sep"></span>
+        <span class="stg lit">Diseño</span><span class="sep"></span>
+        <span class="stg lit">Código</span><span class="sep"></span>
+        <span class="stg lit">Lanzamiento</span>
+      </div>
+
+      <div class="timeline" data-reveal>
+        <div class="row">
+          <p class="yr">2007</p>
+          <p>Entré haciendo piezas gráficas: campañas impresas, redes, newsletters, mockups de sitios.</p>
+        </div>
+        <div class="row">
+          <p class="yr">Hoy</p>
+          <p>Manejo la estrategia de marketing de cuatro salas en el conurbano: campañas multicanal, propuestas para
+            accionistas, diagnóstico de redes y el sitio nuevo que estoy construyendo en Next.js.</p>
+        </div>
+      </div>
+
+      <p class="pull" data-reveal>La relación no creció porque entregué más piezas. Creció porque cada año entendí un
+        poco más <span>qué necesita el negocio</span>.</p>
+    </div>
+  </section>
+
+  <!-- ============ MÁS ============ -->
+  <section class="band-dark mas-wrap" id="mas">
+    <div class="wrap">
+      <div class="mas-grid" data-reveal>
+        <div class="mas-cell" style="background:var(--slate)">
+          <p class="cell-label" style="color:oklch(92% 0.008 80 / 0.38)">YouTube · Sistema</p>
+          <h3 style="color:var(--bone)">La Lupa de Tobi y SGL</h3>
+          <p style="color:oklch(92% 0.008 80 / 0.66)">Sistema de producción para canales de streamers.
+            Coordinación de equipo, calendario editorial y cien ideas guionadas.</p>
+        </div>
+        <div class="mas-cell" style="background:var(--claret)">
+          <p class="cell-label" style="color:oklch(92% 0.008 80 / 0.55)">Audiovisual · IA</p>
+          <h3 style="color:var(--bone)">Producción con IA</h3>
+          <p style="color:oklch(92% 0.008 80 / 0.82)">Reels, voice-over y prompts de video generativo. De la idea al
+            render, con criterio de marca en cada paso.</p>
+        </div>
+        <div class="mas-cell" style="background:var(--carbon)">
+          <p class="cell-label" style="color:oklch(92% 0.008 80 / 0.38)">Branding · Web</p>
+          <h3 style="color:var(--bone)">Identidad &amp; sitios</h3>
+          <p style="color:oklch(92% 0.008 80 / 0.66)">Identidades visuales y sitios para startups de tecnología,
+            educación y salud. Captación, diseño y entrega.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACTO ============ -->
+  <section class="contacto" id="contacto">
+    <div class="wrap">
+      <h2 data-reveal>Si te interesa como pienso <em>hablemos</em>.</h2>
+      <div class="links" data-reveal>
+        <a href="linkedin.com/in/maximilianodc">LINKEDIN<span class="arr-r">→</span></a>
+        <a href="behance.net/maximildelca">BEHANCE<span class="arr-r">→</span></a>
+        <a href="https://wa.me/5491140448248">WHATSAPP<span class="arr-r">→</span></a>
+        <a href="mailto:mxmlndc@gmail.com">EMAIL<span class="arr-r">→</span></a>
+      </div>
+      <p class="foot" data-reveal>Buenos Aires · Disponible para producto y estrategia</p>
+    </div>
+  </section>
+
+  <script>
+    // reveal on scroll
+    const io = new IntersectionObserver(es => {
+      es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+    document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+
+    // hero stagger on load
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.hero [data-reveal]').forEach((el, i) => {
+        setTimeout(() => el.classList.add('in'), 60 + i * 130);
+      });
+    });
+
+    // scroll spy + rail dark-mode + progress
+    const rail = document.getElementById('rail');
+    const links = [...rail.querySelectorAll('a')];
+    const secs = links.map(a => document.getElementById(a.dataset.sec));
+    const darkSecs = new Set(['hero', 'oasis', 'mas', 'contacto']);
+    const progress = document.getElementById('progress');
+
+    function onScroll() {
+      const mid = window.scrollY + window.innerHeight * 0.42;
+      let active = secs[0];
+      secs.forEach(s => { if (s.offsetTop <= mid) active = s; });
+      links.forEach(a => a.classList.toggle('active', a.dataset.sec === active.id));
+      rail.classList.toggle('on-dark', darkSecs.has(active.id));
+      const h = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = (window.scrollY / h * 100) + '%';
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  </script>
+</body>
+
+</html>

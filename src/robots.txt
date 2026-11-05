@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mxdc.vercel.app/sitemap.xml

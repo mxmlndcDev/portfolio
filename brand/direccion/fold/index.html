@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es" data-acento="naranja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Max del Caño — Diseño y código</title>
+  <meta name="description" content="Diseño y construyo sitios y productos de punta a punta, con producción visual hecha con IA.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <a class="saltar" href="#main">Ir al contenido</a>
+
+  <header class="cabecera">
+    <a class="marca" href="#">Max del Caño<span class="punto">.</span></a>
+    <nav aria-label="Principal">
+      <ul>
+        <li><a href="#trabajos">Trabajos</a></li>
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+    <a class="boton boton-lleno boton-chico" href="#contacto">Hablemos</a>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="portada">
+      <ul class="pastillas" aria-label="Qué hago">
+        <li>Diseño web</li>
+        <li>Frontend</li>
+        <li>IA</li>
+        <li class="ciudad">Buenos Aires</li>
+      </ul>
+
+      <div class="portada-grilla">
+        <h1 class="titulo">
+          <span class="linea">Diseño</span>
+          <span class="linea">&amp; código<span class="punto">.</span></span>
+        </h1>
+
+        <ol class="etapas" aria-label="Cómo trabajo">
+          <li>
+            <svg viewBox="0 0 120 84" aria-hidden="true"><rect x="2" y="2" width="116" height="80"/><path d="M14 66 34 44l14 12 22-26 20 18 16-14"/><circle cx="92" cy="20" r="6"/></svg>
+            <span>Estrategia</span>
+          </li>
+          <li class="flecha" aria-hidden="true">→</li>
+          <li>
+            <svg viewBox="0 0 120 84" aria-hidden="true"><rect x="2" y="2" width="116" height="80"/><path d="M2 16h116"/><circle cx="10" cy="9" r="1.6"/><circle cx="17" cy="9" r="1.6"/><circle cx="24" cy="9" r="1.6"/><path d="M14 30h40M14 40h32M14 50h36"/><rect x="66" y="28" width="40" height="40"/><path d="m66 60 12-12 9 8 9-10 10 9"/></svg>
+            <span>Diseño</span>
+          </li>
+          <li class="flecha" aria-hidden="true">→</li>
+          <li>
+            <svg viewBox="0 0 120 84" aria-hidden="true"><rect x="2" y="2" width="116" height="80"/><path d="m40 30-14 12 14 12M80 30l14 12-14 12M66 24 54 60"/></svg>
+            <span>Código</span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="portada-pie">
+        <p class="bajada">Sitios y productos diseñados y construidos de punta a punta, con imagen y video hechos con IA. Lo que ves acá abajo está andando.</p>
+        <div class="acciones">
+          <a class="boton boton-lleno" href="#contacto">Hablemos <span aria-hidden="true">↗</span></a>
+          <a class="boton boton-borde" href="#trabajos">Ver trabajos</a>
+        </div>
+        <blockquote class="dato">
+          <p>«Diecisiete años, el mismo cliente.»</p>
+          <footer>Grupo Midas, de 2007 a hoy</footer>
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="trabajos" id="trabajos" aria-label="Trabajos">
+      <div class="cinta" data-cinta></div>
+    </section>
+  </main>
+
+  <div class="selector" aria-label="Probar acento (solo para elegir)">
+    <button data-elegir="naranja">Naranja señal</button>
+    <button data-elegir="azul">Azul ultramar</button>
+    <button data-elegir="amarillo">Amarillo cinta</button>
+  </div>
+
+  <script src="main.js" type="module"></script>
+</body>
+</html>

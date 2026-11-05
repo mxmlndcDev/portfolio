@@ -1,0 +1,13 @@
+# Decisiones de dirección — portfolio mxdc
+
+- **G1 · Objetivo (2026-11-05):** acción principal = que lo contacten por LinkedIn o email para un puesto (design engineer / web / frontend con IA). Secundaria = abrir un caso y recorrerlo. Decide: ver que diseña y construye, con criterio; el video del sitio funcionando lo prueba en 10 s. Propuesto por Claude, Max dijo «arrancá».
+- **Identidad (2026-11-05):** se mantiene la del sitio actual (tiza / carbón / bordó, Bricolage Grotesque + Geist Mono). Recomendado por Claude; sin objeción. Revisable en G5.
+- **G3 · Referencias (2026-11-05):** 4 capturas de Max en `brands/referencias/` (endcap home y about, brandlos trabajos y footer). Qué tomar: `brands/referencias/QUE-TOMAR.md`.
+- **Foto del about (2026-11-05):** `brands/referencias/max.jpeg`, real, se usa tal cual (recortada). Nada generado.
+- **Pantallas en contexto (2026-11-05):** Max eligió escenas generadas. 16 prompts en `assets/escenas/` (notebook 3:2 + celular 4:5 por trabajo, pantalla verde plana); Max los corre en Gemini y guarda en `resultados/`. El video grabado se monta adentro de la pantalla. **G3 cerrada.**
+- **Escenas (2026-11-05):** las 16 detectadas y montadas OK (`tools/pantallas.py` → `assets/escenas/pantallas.json`). Pendiente: limpiar el reflejo verde en perro-celular.
+- **G4 · Dirección (2026-11-05):** **A · El taller** (elegida por Max): cada trabajo en su escena, la pantalla reproduce el sitio cuando la tarjeta llega al centro de la cinta. **G5 se resuelve en el fold:** acento NO bordó; Max elige entre opciones más llamativas vistas aplicadas en G6.
+- **G5 · Acento (2026-11-05):** **naranja señal** `oklch(66% 0.215 38)` (#F85003), elegido por Max sobre azul ultramar y amarillo cinta. Para letra chica, `oklch(54% 0.2 38)` (#C72C00, 4,7:1 sobre tiza). Base tiza/carbón y tipografías del sitio actual + Instrument Serif itálica para el énfasis.
+- **G6 · Fold (2026-11-05):** `brand/direccion/fold/`. Cambio pedido: el rótulo pasa a pastillas con borde y letra naranja (DISEÑO WEB · FRONTEND · IA). Pendiente confirmar si queda aprobado.
+- **G6 · Fold:** aprobado por Max (2026-11-05, «seguimos»).
+- **G7 · Movimiento (2026-11-05):** aprobado por Max: `brand/direccion/movimiento/` (entrada del título + punto con rebote, dibujos que se trazan, pantalla que se prende en el centro, cinta con arrastre/inercia/flechas, hover que llena de naranja). Corrección pedida: el hover de «Hablemos» no puede quedar negro → grande se llena de naranja con letra carbón; el de la cabecera se llena de naranja profundo (#C72C00) con letra tiza. No se mueven: textos de lectura, cabecera, fondo; nada de fundido al entrar las secciones.

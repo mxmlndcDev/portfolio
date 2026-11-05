@@ -1,0 +1,84 @@
+/* Páginas de caso. Gramática propia: portada, pantallas, dos tiempos, tira, planilla, tablero, siguiente. */
+
+/* ---------- portada del caso ---------- */
+.caso-portada { padding: 26px var(--margen) var(--espacio-l); }
+.volver { display: inline-block; font-family: var(--f-mono); font-size: var(--t-rotulo); letter-spacing: .12em; text-transform: uppercase; color: var(--piedra); margin-bottom: 18px; padding-block: 6px; }
+.volver:hover { color: var(--carbon); }
+.pastillas .pastilla-cliente { background: var(--acento); color: var(--carbon); }
+.caso-titulo {
+  font-family: var(--f-display); font-weight: 800; font-variation-settings: 'wdth' 76, 'opsz' 96;
+  font-size: var(--t-caso); line-height: .86; letter-spacing: -0.025em; text-transform: uppercase;
+  margin-top: clamp(14px, 2.4vh, 30px);
+}
+.caso-bajada { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 22px 48px; margin-top: 28px; }
+.caso-bajada p { font-size: var(--t-bajada); line-height: 1.45; color: var(--grafito); max-width: 52ch; }
+
+/* ---------- pantallas: notebook y celular, prendidas ---------- */
+.pantallas { display: grid; grid-template-columns: minmax(0, 2.3fr) minmax(0, 1fr); gap: 26px; align-items: end; padding: 0 var(--margen); }
+.pantallas .escena { --proporcion: 3 / 2; }
+.pantallas .escena[data-tipo="celular"] { --proporcion: 4 / 5; }
+.escena[data-tipo="celular"] .pantalla { border-radius: 9%/4.2%; }
+.pantallas figcaption { font-family: var(--f-mono); font-size: var(--t-mini); letter-spacing: .1em; text-transform: uppercase; color: var(--piedra); margin-top: 12px; }
+
+/* ---------- dos tiempos: lo que vi / la idea ---------- */
+.dos-tiempos { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: var(--espacio-l); padding: var(--espacio-xl) var(--margen) var(--espacio-l); }
+.dos-tiempos .rotulo { margin-bottom: 18px; }
+.dos-tiempos p:not(.rotulo) { font-size: 1.08rem; line-height: 1.6; color: var(--grafito); max-width: 52ch; }
+.dos-tiempos p.cita { font-family: var(--f-serif); font-style: italic; font-size: var(--t-cita); line-height: 1.08; color: var(--carbon); max-width: 22ch; margin-bottom: 22px; }
+
+/* ---------- tira de capturas ---------- */
+.tira { padding: var(--espacio-l) 0; border-top: 1.5px solid var(--carbon); }
+.tira-titulo { font-family: var(--f-display); font-weight: 700; font-size: var(--t-h3); letter-spacing: -0.02em; line-height: 1; padding: 0 var(--margen); margin-bottom: 30px; }
+.tira-fila { display: flex; gap: 20px; align-items: flex-start; overflow-x: auto; padding: 0 var(--margen) 18px; scroll-snap-type: x proximity; scroll-padding-inline: var(--margen); scrollbar-width: thin; }
+.tira-fila figure { flex: none; scroll-snap-align: start; }
+.tira-fila .ancha { width: min(62vw, 820px); }
+.tira-fila .angosta { width: min(22vw, 280px); margin-top: var(--espacio-l); }
+.tira-fila img { display: block; width: 100%; height: auto; border-radius: var(--radio-captura); border: 1px solid var(--filete); }
+.tira-fila figcaption { font-size: .88rem; color: var(--piedra); margin-top: 10px; }
+
+/* ---------- planilla: cómo usé IA ---------- */
+.planilla { padding: var(--espacio-l) var(--margen) var(--espacio-xl); }
+.planilla-titulo { font-family: var(--f-display); font-weight: 800; font-variation-settings: 'wdth' 76, 'opsz' 96; font-size: var(--t-h2); text-transform: uppercase; line-height: .9; letter-spacing: -0.02em; margin-bottom: var(--espacio-l); }
+.planilla-titulo em { font-family: var(--f-serif); font-weight: 400; text-transform: none; color: var(--acento-texto); }
+.planilla table { width: 100%; border-collapse: collapse; }
+.planilla thead th { font-family: var(--f-mono); font-size: var(--t-rotulo); font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--piedra); text-align: left; padding: 0 24px 12px 0; }
+.planilla tbody tr { border-top: 1px solid var(--filete); }
+.planilla tbody tr:last-child { border-bottom: 1px solid var(--filete); }
+.planilla tbody th, .planilla td { text-align: left; vertical-align: baseline; padding: 20px 24px 22px 0; }
+.planilla tbody th { font-size: 1.2rem; font-weight: 700; width: 18%; }
+.planilla td { font-size: 1.02rem; line-height: 1.5; color: var(--grafito); width: 41%; }
+
+/* ---------- tablero: resultado ---------- */
+.tablero { background: var(--carbon); color: var(--tiza); padding: var(--espacio-l) var(--margen); }
+.tablero .rotulo { color: var(--acento); }
+.tablero-numeros { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; margin: 28px 0 34px; }
+.tablero-numeros div { border-top: 2px solid var(--tiza); padding-top: 14px; }
+.tablero-numeros dt { font-family: var(--f-mono); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--tiza-tenue); }
+.tablero-numeros dd { font-family: var(--f-display); font-weight: 800; font-variation-settings: 'wdth' 76, 'opsz' 96; font-size: var(--t-num); line-height: .9; letter-spacing: -0.03em; margin-top: 8px; font-variant-numeric: tabular-nums; }
+.tablero-pie { color: var(--tiza-tenue); font-size: 1.02rem; line-height: 1.6; max-width: 62ch; }
+
+/* ---------- siguiente ---------- */
+.siguiente { display: block; padding: var(--espacio-l) var(--margen); border-bottom: 1.5px solid var(--carbon); }
+.siguiente-nombre { display: block; margin-top: 10px; font-family: var(--f-display); font-weight: 800; font-variation-settings: 'wdth' 76, 'opsz' 96; font-size: var(--t-h2); line-height: .9; text-transform: uppercase; letter-spacing: -0.02em; }
+.siguiente-nombre span { display: inline-block; color: var(--acento); transition: transform var(--d-hover) var(--curva-salida); }
+.siguiente:hover .siguiente-nombre span { transform: translateX(.2em); }
+
+.cierre-corto { padding-top: var(--espacio-l); }
+
+/* ---------- celular ---------- */
+@media (max-width: 760px) {
+  .caso-titulo { font-size: 15vw; }
+  .caso-bajada .boton { width: 100%; }
+  .pantallas { grid-template-columns: 1fr; }
+  .pantallas figure:last-child { width: 72%; margin-left: auto; }
+  .dos-tiempos { grid-template-columns: 1fr; }
+  .tira-fila .ancha { width: 86vw; }
+  .tira-fila .angosta { width: 52vw; margin-top: 0; }
+  .planilla thead { display: none; }
+  .planilla tbody tr { display: grid; gap: 6px; padding: 18px 0; }
+  .planilla tbody th, .planilla td { width: auto; padding: 0; }
+  .planilla td:last-child { color: var(--piedra); }
+  .tablero-numeros { grid-template-columns: 1fr 1fr; gap: 26px 16px; }
+}
+
+.sin-link { font-family: var(--f-mono); font-size: .78rem; letter-spacing: .04em; color: var(--piedra); max-width: 34ch; border-left: 2px solid var(--acento); padding-left: 12px; }

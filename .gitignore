@@ -1,0 +1,7 @@
+.DS_Store
+__pycache__/
+# no van al repo público: nombran prospectos o son crudos/ajenos (quedan en local)
+/ESTADO.md
+/INVENTARIO.md
+/media/
+/brands/

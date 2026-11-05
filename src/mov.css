@@ -1,0 +1,82 @@
+/* G7 · Movimiento. Cada movimiento tiene su duración y su curva: nada comparte el mismo fade. */
+:root {
+  --curva-salida: cubic-bezier(.16, 1, .3, 1);   /* entra rápido y frena largo */
+  --curva-rebote: cubic-bezier(.34, 1.8, .5, 1);  /* solo el punto */
+  --d-titulo: 950ms;
+  --d-trazo: 720ms;
+  --d-prender: 520ms;
+  --d-hover: 340ms;
+}
+
+/* 1 · Título: cada línea sube desde abajo de su propio renglón; el punto cae al final. */
+.titulo .linea { overflow: hidden; padding: .14em 0 .04em; margin: -.14em 0 -.04em; } /* el padding de arriba deja lugar a la Ñ y la Ó */
+.titulo .linea > span:first-child { display: inline-block; transform: translateY(108%); }
+.titulo .punto { display: inline-block; transform: scale(0); transform-origin: 50% 80%; }
+.entrar .titulo .linea > span:first-child { transform: none; transition: transform var(--d-titulo) var(--curva-salida); }
+.entrar .titulo .linea:nth-child(2) > span:first-child { transition-delay: 110ms; }
+.entrar .titulo .punto { transform: none; transition: transform 520ms var(--curva-rebote) 820ms; }
+
+/* 2 · Dibujos: se trazan en orden, como un recorrido. Las flechas aparecen entre uno y otro. */
+.etapas svg * { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.etapas .flecha, .etapas span { opacity: 0; }
+.entrar .etapas svg * { stroke-dashoffset: 0; transition: stroke-dashoffset var(--d-trazo) cubic-bezier(.65, 0, .35, 1); }
+.entrar .etapas span, .entrar .etapas .flecha { opacity: 1; transition: opacity 400ms ease; }
+.entrar .etapas li:nth-child(1) svg *, .entrar .etapas li:nth-child(1) span { transition-delay: 500ms; }
+.entrar .etapas li:nth-child(2) { transition-delay: 900ms; }
+.entrar .etapas li:nth-child(3) svg *, .entrar .etapas li:nth-child(3) span { transition-delay: 1000ms; }
+.entrar .etapas li:nth-child(4) { transition-delay: 1400ms; }
+.entrar .etapas li:nth-child(5) svg *, .entrar .etapas li:nth-child(5) span { transition-delay: 1500ms; }
+
+/* 3 · Pantalla: apagada (el sitio se adivina detrás del vidrio), se prende cuando la tarjeta llega al centro. */
+.pantalla::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: var(--vidrio);
+  opacity: .78;
+  transition: opacity 700ms ease;
+}
+.activa .pantalla::after { opacity: 0; transition: opacity var(--d-prender) var(--curva-salida); }
+.activa .pantalla { animation: prender var(--d-prender) ease-out; }
+@keyframes prender {
+  0% { filter: brightness(2.4) saturate(.4); }
+  100% { filter: none; }
+}
+
+/* 4 · Cinta: la del centro manda, las demás se corren un paso atrás. */
+.cinta { cursor: grab; scroll-snap-type: x mandatory; scroll-padding-inline: var(--margen); }
+.cinta.arrastrando { cursor: grabbing; scroll-snap-type: none; user-select: none; }
+.cinta.arrastrando img, .cinta.arrastrando video { pointer-events: none; }
+.tarjeta { scroll-snap-align: center; }
+.tarjeta .escena { transform: scale(.94); transition: transform 700ms var(--curva-salida); }
+.tarjeta.activa .escena { transform: none; }
+.tarjeta h3, .tarjeta p { transition: opacity 500ms ease; }
+.tarjeta:not(.activa) p { opacity: 0; }
+.cinta-control { display: flex; gap: 10px; justify-content: flex-end; padding: 0 var(--margen); margin-top: -36px; }
+.redondo {
+  width: 48px; height: 48px; border-radius: 50%; border: 1.5px solid var(--carbon); background: none;
+  font-size: 1.1rem; cursor: pointer; color: var(--carbon);
+  transition: background-color var(--d-hover) ease, color var(--d-hover) ease;
+}
+.redondo:hover { background: var(--carbon); color: var(--tiza); }
+
+/* 5 · Hover: el botón se llena de naranja desde la izquierda y la flecha avanza en diagonal. */
+.boton-lleno { background: linear-gradient(var(--acento), var(--acento)) 0 0 / 0 100% no-repeat, var(--carbon); }
+.boton-lleno:hover { background: linear-gradient(var(--acento), var(--acento)) 0 0 / 100% 100% no-repeat, var(--carbon); color: var(--sobre-acento); }
+.boton { transition: background-size var(--d-hover) var(--curva-salida), color var(--d-hover) ease, border-color var(--d-hover) ease; }
+.flechita { display: inline-block; transition: transform var(--d-hover) var(--curva-salida); }
+.boton:hover .flechita { transform: translate(3px, -3px); }
+.cabecera .boton-lleno { background: linear-gradient(var(--acento-texto), var(--acento-texto)) 0 0 / 0 100% no-repeat, var(--acento); color: var(--carbon); }
+.cabecera .boton-lleno:hover { background: linear-gradient(var(--acento-texto), var(--acento-texto)) 0 0 / 100% 100% no-repeat, var(--acento); color: var(--tiza); }
+.tarjeta h3 { width: fit-content; background: linear-gradient(var(--acento), var(--acento)) 0 100% / 0 2px no-repeat; transition: background-size var(--d-hover) var(--curva-salida); }
+.tarjeta:hover h3 { background-size: 100% 2px; }
+
+/* Movimiento reducido: todo quieto y en su lugar; los videos no arrancan solos. */
+@media (prefers-reduced-motion: reduce) { :root { --reducido: 1; } }
+.quieto *, .quieto *::after { transition: none !important; animation: none !important; }
+.quieto .titulo .linea > span:first-child, .quieto .titulo .punto { transform: none; }
+.quieto .etapas svg * { stroke-dashoffset: 0; }
+.quieto .etapas span, .quieto .etapas .flecha { opacity: 1; }
+
+/* celular */
+@media (max-width: 760px) {
+  .cinta-control { display: none; }
+}

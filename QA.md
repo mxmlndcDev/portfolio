@@ -27,8 +27,16 @@ Revisado sobre `src/` en local (`python3 -m http.server 8710` desde la raíz). L
 
 El servidor local no comprime ni usa HTTP/2. Cambios que ya entraron: fuentes alojadas (170 KB, latín), precarga de la fuente y de las escenas del primer pantallazo, esquinas de pantalla como módulo (un viaje menos), `modulepreload`, cinta con alto reservado (CLS 0,107 → 0), video que arranca después de `load`, escenas fuera de pantalla con `loading="lazy"`.
 
-## Recibos en vivo
-Pendiente del deploy.
+## Recibos en vivo (https://mxdc.vercel.app, 2026-11-05, Lighthouse 12.8)
+| Página | Celular: Rend. / Acc. / BP / SEO | LCP | CLS | Escritorio | LCP |
+|---|---|---|---|---|---|
+| home | 100 / 100 / 96 / 100 | 1,7 s | 0 | 100 / 100 / 100 / 100 | 0,4 s |
+| trabajos/fredy | 98 / 100 / 96 / 100 | 2,3 s | 0 | 100 / 100 / 100 / 100 | 0,5 s |
+| trabajos/delta | 99 / 100 / 96 / 100 | 2,2 s | 0 | 100 / 100 / 100 / 100 | 0,5 s |
+
+HTML de la home: 4,2 KB comprimido, primer byte en 0,13 s. Videos: 0,2–2,6 MB cada uno, solo baja el de la tarjeta del centro y recién después de `load`. Archivos estáticos, sin framework ni servidor.
+Verificado en vivo: 9 páginas a 375/390/768 sin errores de consola ni desborde; los videos de la cinta y de los casos se reproducen; fuentes con caché de un año.
+Falta: la prueba de Max en su teléfono y su red.
 
 ## Deuda declarada
 - `image-size-responsive`: las escenas se sirven a 1264 px en todas las pantallas. Falta un `srcset` chico para celular.

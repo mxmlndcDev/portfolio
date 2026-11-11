@@ -2,28 +2,42 @@ import { encuadrar } from './pantalla.js';
 import pantallas from './escenas/pantallas.js';
 
 // Home: entrada del fold, cinta de trabajos con arrastre, y la pantalla que se prende en el centro (G7).
-const ESCENAS = 'escenas/';
-const MEDIA = 'media/';
-const CONCEPTO = 'Concepto · no encargado';
+// Sirve para /  y para /en/: el idioma sale de <html lang>, las rutas de la ubicación de este archivo.
+const EN = document.documentElement.lang === 'en';
+const RAIZ = new URL('./', import.meta.url).href;
+const ESCENAS = RAIZ + 'escenas/';
+const MEDIA = RAIZ + 'media/';
+const CASO = EN ? 'work/' : 'trabajos/';
+const CONCEPTO = EN ? 'Concept · not commissioned' : 'Concepto · no encargado';
+const CLIENTE = EN ? 'Client · live' : 'Cliente · en producción';
+const VER = EN ? 'See the case →' : 'Ver el caso →';
 
 // Los 8 trabajos. En escritorio alterna notebook y celular; en el celular, todos celular.
 const TRABAJOS = [
   { slug: 'catalonia', nombre: 'Catalonia Sur', tipo: CONCEPTO, escena: 'celular', ancho: '19vw', baja: '8vh',
-    texto: 'Reservas directas con seña para dejar de pagarle comisión a Booking.' },
+    texto: EN ? 'Direct bookings with a deposit, so the hotel stops paying Booking’s commission.'
+      : 'Reservas directas con seña para dejar de pagarle comisión a Booking.' },
   { slug: 'delta', nombre: 'Delta Charter', tipo: CONCEPTO, escena: 'notebook', ancho: '43vw',
-    texto: 'Yates, helicóptero y avión privado con una sola empresa. La portada baja del cielo al agua mientras hacés scroll.' },
-  { slug: 'fredy', nombre: 'Fredy restobar', tipo: 'Cliente · en producción', escena: 'notebook', ancho: '36vw', baja: '4vh',
-    texto: 'Sitio en producción con carta y cotizador de bandejas. Lighthouse 98 / 100 / 100 / 100 en celular.' },
-  { slug: 'peluqueria', nombre: 'Peluquería canina', tipo: CONCEPTO, escena: 'notebook', ancho: '36vw',
-    texto: 'Turnos por WhatsApp e ilustraciones 3D hechas con IA para cada corte.' },
+    texto: EN ? 'Yachts, helicopter and private jet from one company. The hero drops from sky to water as you scroll.'
+      : 'Yates, helicóptero y avión privado con una sola empresa. La portada baja del cielo al agua mientras hacés scroll.' },
+  { slug: 'fredy', nombre: 'Fredy restobar', tipo: CLIENTE, escena: 'notebook', ancho: '36vw', baja: '4vh',
+    texto: EN ? 'Live site with a menu and a catering quote builder. Lighthouse 98 / 100 / 100 / 100 on mobile.'
+      : 'Sitio en producción con carta y cotizador de bandejas. Lighthouse 98 / 100 / 100 / 100 en celular.' },
+  { slug: 'peluqueria', nombre: EN ? 'Dog groomer' : 'Peluquería canina', tipo: CONCEPTO, escena: 'notebook', ancho: '36vw',
+    texto: EN ? 'WhatsApp booking and an AI-made 3D illustration for every cut.'
+      : 'Turnos por WhatsApp e ilustraciones 3D hechas con IA para cada corte.' },
   { slug: 'evelia', nombre: 'Evelia', tipo: CONCEPTO, escena: 'celular', ancho: '19vw', baja: '10vh',
-    texto: 'La ilustración de la casa de la abuela, animada por capas. Restaurante Michelin.' },
+    texto: EN ? 'Their own drawing of grandma’s house, animated in layers. A Michelin-listed restaurant.'
+      : 'La ilustración de la casa de la abuela, animada por capas. Restaurante Michelin.' },
   { slug: 'petshop', nombre: 'Pet shop', tipo: CONCEPTO, escena: 'notebook', ancho: '36vw', baja: '3vh',
-    texto: 'El pedido se arma como una receta: dosis por kilo y un veterinario que lo revisa.' },
+    texto: EN ? 'Orders work like a prescription: dose by weight, checked by a vet.'
+      : 'El pedido se arma como una receta: dosis por kilo y un veterinario que lo revisa.' },
   { slug: 'end2end', nombre: 'END 2 END', tipo: CONCEPTO, escena: 'celular', ancho: '19vw', baja: '7vh',
-    texto: 'Bingo multiplayer para operadores. La agenda de la feria es un cartón de bingo.' },
+    texto: EN ? 'Multiplayer bingo for operators. The trade-show schedule is a bingo card.'
+      : 'Bingo multiplayer para operadores. La agenda de la feria es un cartón de bingo.' },
   { slug: 'perro', nombre: 'Perro', tipo: CONCEPTO, escena: 'notebook', ancho: '36vw',
-    texto: 'Panchería con voz de fanzine punk. Dos cosas importan: el pan y la salchicha.' },
+    texto: EN ? 'A hot dog joint with a punk-zine voice. Two things matter: the bun and the sausage.'
+      : 'Panchería con voz de fanzine punk. Dos cosas importan: el pan y la salchicha.' },
 ];
 
 const html = document.documentElement;
@@ -48,9 +62,9 @@ for (const t of TRABAJOS) {
       <img src="${ESCENAS}${clave}.webp" alt="" draggable="false" decoding="async"${TRABAJOS.indexOf(t) > 2 ? ' loading="lazy"' : ''}>
       <div class="pantalla"><video poster="${MEDIA}${t.slug}/${vista}-home-fold.webp" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video></div>
     </div>
-    <h3><a href="trabajos/${t.slug}.html" draggable="false">${t.nombre}</a><span class="tipo">${t.tipo}</span></h3>
+    <h3><a href="${CASO}${t.slug}.html" draggable="false">${t.nombre}</a><span class="tipo">${t.tipo}</span></h3>
     <p>${t.texto}</p>
-    <span class="ver" aria-hidden="true">Ver el caso →</span>`;
+    <span class="ver" aria-hidden="true">${VER}</span>`;
   cinta.append(el);
   const img = el.querySelector('img');
   const video = el.querySelector('video');

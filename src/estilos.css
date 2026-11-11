@@ -79,6 +79,11 @@ ul, ol { list-style: none; }
 .cabecera ul { display: flex; gap: 34px; font-size: var(--t-nav); font-weight: 500; }
 .cabecera nav a { padding-block: 6px; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1.5px no-repeat; transition: background-size var(--dur) var(--curva); }
 .cabecera nav a:hover { background-size: 100% 1.5px; }
+/* Cambio de idioma: el actual en carbón, el otro en piedra; toque de 44 px. */
+.idioma { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-family: var(--f-mono); font-size: var(--t-mini); letter-spacing: .06em; text-transform: uppercase; }
+.idioma span { color: var(--carbon); }
+.idioma a { color: var(--piedra); padding: 10px 4px; margin: -10px -4px; transition: color var(--dur) var(--curva); }
+.idioma a:hover { color: var(--acento-texto); }
 
 /* ---------- botones ---------- */
 .boton {

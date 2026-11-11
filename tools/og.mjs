@@ -9,7 +9,11 @@ const SLUGS = ['catalonia', 'delta', 'fredy', 'peluqueria', 'evelia', 'petshop',
 mkdirSync(OUT, { recursive: true });
 const b = await chromium.launch({ channel: 'chrome' });
 const ctx = await b.newContext({ viewport: { width: 1680, height: 882 }, reducedMotion: 'reduce' });
-for (const [nombre, ruta] of [['home', ''], ...SLUGS.map((s) => [s, `trabajos/${s}.html`])]) {
+const PAGINAS = [['home', ''], ...SLUGS.map((s) => [s, `trabajos/${s}.html`]),
+  ['en-home', 'en/'], ...SLUGS.map((s) => [`en-${s}`, `en/work/${s}.html`])];
+// node tools/og.mjs en  → solo las de inglés
+const SOLO = process.argv[2];
+for (const [nombre, ruta] of PAGINAS.filter(([n]) => !SOLO || n.startsWith(SOLO + '-'))) {
   const p = await ctx.newPage();
   await p.goto(`http://localhost:8710/src/${ruta}`, { waitUntil: 'networkidle' });
   await p.evaluate(() => document.fonts.ready);

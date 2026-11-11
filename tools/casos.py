@@ -213,46 +213,242 @@ CASOS = [
     tablero_pie='Verificado en 375, 390 y 768 px: cuatro errores encontrados y corregidos.'),
 ]
 
+# ---------- Inglés: mismos casos, mismo orden. Lo que no se nombra acá sale del español (slug, link, medios). ----------
+CONCEPT = 'Concept · not commissioned'
+EN = {
+  'catalonia': dict(nombre='Catalonia Sur', etiqueta=CONCEPT, rubro='Hospitality',
+    descripcion='Direct bookings with a deposit for an apart-hotel in Bariloche, and a dashboard that adds up the commission it no longer pays Booking.',
+    bajada='Direct bookings with a deposit for an apart-hotel in Bariloche, and a dashboard that shows what it no longer pays Booking.',
+    pie_desk='Desktop · one booking, from the floor to the dashboard', pie_mob='Mobile · the home page runs down the hillside',
+    vi='An apart-hotel with a spa above Lake Nahuel Huapi that relied on Booking, and its commission, to fill its nights. Guests loved it and all complained about the same thing: stairs and slopes. The place closed later; the site stayed on as a sample for other hotels.',
+    cita='“You choose by height.”',
+    idea='The building climbs the hillside, and each type of unit sits at a different height, with a different view. The site turns the complaint around: the stairs are what you’re choosing. Booking means picking a height, then dates on a calendar that won’t let you cross a taken night, then paying the deposit. On the other side, a dashboard adds up the commission that didn’t go to Booking.',
+    tira=['Level 1, the top: the Top View with its polaroid-style photo|The Top View, at the top',
+          'The Superior unit on mobile, labeled “with stairs”|The Superior, “with stairs”',
+          'Booking: the three levels with prices and the November calendar|Height first, then dates',
+          'The level’s calendar on mobile, with taken and free nights|It won’t let you cross a taken night',
+          'Pick your height and dates, and the 4.9 from reviews|Reviews, with their number'],
+    ia=[('No generated images', 'Every photo is of the actual place. AI didn’t touch any of them.', 'I redrew the building’s cross-section to match the real one, with its three levels.'),
+        ('Claude Code', 'The three pages (site, booking and dashboard) on shared sample data: a booking you make shows up in the dashboard.', 'I tested the flow end to end: no double bookings.'),
+        ('Research', 'TripAdvisor and Kayak reviews, to pull out the words guests actually use.', 'Booking blocked the download, so there’s no made-up Booking data.')],
+    tablero_titulo='By the numbers',
+    numeros=[('Connected pages', '3'), ('Generated photos', '0'), ('Commission the dashboard tracks', '15–25%'), ('TripAdvisor, 493 reviews', '4.9')],
+    tablero_pie='Rates, units and deposit are labeled as samples on screen. What carries over to another hotel is the booking flow and the dashboard.'),
+
+  'delta': dict(nombre='Delta Charter', etiqueta=CONCEPT, rubro='Yacht charter',
+    descripcion='Yachts, helicopter and private jet from one company: the hero drops from sky to water as you scroll, built with generated video.',
+    bajada='Yachts, helicopter and private jet from one company. The hero drops from sky to water as you scroll.',
+    pie_desk='Desktop · the video moves with the scroll', pie_mob='Mobile · the inquiry goes out as a boarding pass',
+    vi='A yacht, helicopter and private jet company with a 5.0 on Google from 81 reviews, and a 2022 site with one photo of the bay and two buttons. No page said which boats they had, how many people fit, or that they also fly.',
+    cita='“By air and by water, from Nordelta.”',
+    idea='No other charter company in the area has a jet and a helicopter. The hero says it without words: as you scroll, the video goes from the jet above the clouds to the helicopter over the Delta to the table set on the yacht, and a glass boarding pass changes with each leg. The inquiry goes out on WhatsApp, already written.',
+    tira=['Hero with the private jet above the clouds and the glass boarding pass|Leg 1: private jet',
+          'The helicopter leg on mobile|Leg 2, on mobile',
+          'The helicopter over the Delta at sunset, with the pass set to Helicopter|Leg 2: helicopter',
+          'Skippered yachts at night, on mobile|Leg 3: the yachts',
+          'The bay with the yachts moored at golden hour|The bay, before the table'],
+    ia=[('Gemini (video)', 'Three chained shots: jet above the clouds, helicopter over the Delta, the bay at blue hour.', 'Each shot’s last frame is the next one’s first. I cut the jumps and redid the endings where the wing warped.'),
+        ('Python + ffmpeg', 'Joins the shots (851 frames) and darkens to night blue at the seam, without spending another generation.', 'One known flaw remains: a 4-frame ghost trail on the helicopter’s turn.'),
+        ('Claude Code', 'The scroll that plays the video forward and back, and the inquiry that goes out with the four answers their WhatsApp asks for.', 'The first palette came out generic and I threw it away. It was designed only once there were references.')],
+    tablero_titulo='By the numbers',
+    numeros=[('Chained shots', '3'), ('Frames in the journey', '851'), ('Seconds of video', '35.5'), ('MB of scroll video', '8.2')],
+    tablero_pie='Done in one day, from first analysis to published sample.'),
+
+  'fredy': dict(nombre='Fredy restobar', etiqueta='Client · live', rubro='Food',
+    descripcion='Live site for a finger-sandwich shop: orders routed to WhatsApp or PedidosYa, catering that quotes itself, and Lighthouse 98 on mobile.',
+    bajada='Finger sandwiches in Buenos Aires’ north side. A site that doesn’t take the order: it sends people fast to the channel they already use, and builds the office catering order on its own.',
+    pie_desk='Desktop · the catering order builds itself', pie_mob='Mobile · the same flow, designed for here first',
+    vi='A sandwich shop with 35 years in the neighborhood and a site that was a WordPress template: Google had indexed sample posts about sushi and cocktails. Orders already came in through WhatsApp and PedidosYa, and office catering was quoted by hand, one message at a time.',
+    cita='“Most places use two-day-old bread. Ours arrives in the morning and gets sliced on the spot.”',
+    idea='The owner says that in a reel, and it rules the whole site. Everything else gets out of the way: pickup goes to WhatsApp, delivery goes to PedidosYa, and catering is built on an order ticket that adds up pieces, price and how many people it feeds.',
+    tira=['What’s new: the owner on video and the milanesa sandwich taken apart in layers|What’s new: the owner on video and the sandwich in layers',
+          'Catering on mobile: product cards with plus and minus buttons|Catering, in sixes',
+          'The catering builder with the order ticket on the side adding up pieces and total|The ticket adds itself up and goes out on WhatsApp',
+          'The menu on mobile: name, dotted line and price, with search|The menu, fed from a JSON file',
+          'Free delivery map within 3 km, with distances by neighborhood|Free delivery within 3 km, with the table by neighborhood'],
+    ia=[('Veo', 'The hero video: the stack of sandwiches in a seamless 7-second loop, 0.5 MB.', 'I picked from several takes and built a back-and-forth loop so the cut doesn’t show.'),
+        ('Gemini', 'Eleven edits of real photos of the shop and its products.', 'I checked every sign zoomed in: in one, it had changed “1989” to “1985”.'),
+        ('Gemini + code', 'The milanesa sandwich taken apart into 7 layers that come together as you scroll.', 'The layers are cut by a script, not the model.'),
+        ('Claude Code', 'The build: the menu comes from a JSON file, with structured data for Google.', 'Every design decision was approved first, one at a time.')],
+    tablero_titulo='Result · Lighthouse on mobile, home page',
+    numeros=[('Performance', '98'), ('Accessibility', '100'), ('Best practices', '100'), ('SEO', '100')],
+    tablero_pie='Live since October 2, 2026 at fredyrestobar.com.ar. The menu page scores 100 on all four. Domain, DNS, Search Console and tracking on every button were on me too.'),
+
+  'peluqueria': dict(nombre='Dog groomer', etiqueta=CONCEPT, rubro='Pets',
+    descripcion='WhatsApp booking and an AI-made 3D illustration for every cut, for a neighborhood dog groomer.',
+    bajada='WhatsApp booking and an AI-made 3D illustration for every cut. This is the sample version, without the shop’s details.',
+    pie_desk='Desktop · from the cut to the ticket', pie_mob='Mobile · the cuts hang from a line',
+    vi='A neighborhood dog groomer with a 5.0 on Google, no website and no social media: everything ran through WhatsApp. Almost every review names the same person, and the existing photos didn’t show the cuts well.',
+    cita='“Your dog already knows him.”',
+    idea='One person, the same hands for ten years. The cuts hang from a line with clothespins, like the bandanas the dogs leave with; each card flips to show the cut on a real dog. The booking comes out as a printed ticket and opens WhatsApp with the message ready.',
+    tira=['The cuts as cards hanging from a line, each with a 3D dog|A 3D dog for every cut',
+          'The hanging cards on mobile|The line, on mobile',
+          'How a booking works: six steps and the day’s card|How a booking works, in six steps',
+          'The booking form on mobile|Booking, with an estimated price',
+          'Reviews stacked as cards, with the dog and its years|Reviews in a stack'],
+    ia=[('Gemini', 'Twenty 3D dog illustrations, one per cut, based on the real photos.', 'I cut them out with a script: green background and watermark removed.'),
+        ('Claude Code', 'The booking: form, printed ticket and a ready-made WhatsApp message, with price and duration by dog size.', 'After sending, the form is left empty.'),
+        ('Sample script', 'Builds this copy to show to other groomers.', 'It fails if any detail from the original shop is left.')],
+    tablero_titulo='By the numbers',
+    numeros=[('3D illustrations', '20'), ('Cuts on the line', '8'), ('Booking steps', '6'), ('KB of the published page', '980')],
+    tablero_pie='The same page, without details, is used to pitch it to other groomers.'),
+
+  'evelia': dict(nombre='Evelia', etiqueta=CONCEPT, rubro='Food',
+    descripcion='A Michelin-recommended restaurant’s illustration, animated in layers: the house changes with the service.',
+    bajada='Their own illustration, animated in layers, changing with the restaurant’s service hours.',
+    pie_desk='Desktop · the house, at the current time of day', pie_mob='Mobile · the menu, read from where they edit it',
+    vi='A restaurant recommended by Michelin in 2025 and 2026, with its own illustration of grandma’s house that the site used as a still background, and a hamburger menu. Reservations sell out month after month.',
+    cita='“Evelia’s house.”',
+    idea='The restaurant is grandma’s house, and the home page lives on the service’s schedule: sun at lunch, lit windows at night, shutters down on Mondays. When the month’s bookings open, a banner goes up across the street. The menu is read live from where they already edit it, so nobody has to learn anything new.',
+    tira=['Evelia’s house: grandma kneading, illustrated, next to the story|Grandma kneads on a loop',
+          'Evelia’s house on mobile|The story, on mobile',
+          'Evelia recommends: five illustrated dishes on cards over green|Five dishes, each illustrated',
+          'The menu on mobile with the Menu, Book and Directions bar|Menu with its sticky bar',
+          'Before you come: booking rules in big figures|Before you come, in figures'],
+    ia=[('nano-banana-pro', 'A clean plate of their illustration, for US$0.20.', 'I separated the pieces (sun, car, grandma) by difference, in code.'),
+        ('Code', 'Night, and the closed house, on top of their own drawing.', 'The closed house the AI made redrew the building and didn’t line up: I built it from the wood in their illustration.'),
+        ('Gemini', 'Dishes, objects and an alphabet, turned into the headline font.', 'The “d” and the “4” were missing: the d is a mirrored b.'),
+        ('Claude Code', 'The menu, live from their menu system: 144 items.', 'If the system fails, a static backup stays up.')],
+    tablero_titulo='By the numbers',
+    numeros=[('States of the house', '4'), ('Live menu items', '144'), ('Dollars on AI images', '0.20'), ('MB published', '2.3')],
+    tablero_pie='States: midday, afternoon, night and closed, by Buenos Aires time.'),
+
+  'petshop': dict(nombre='Pet shop', etiqueta=CONCEPT, rubro='Pets',
+    descripcion='A pet shop with a vet clinic: orders work like a prescription, with dose by weight, a vet who checks it, and a dashboard with each patient’s file.',
+    bajada='Orders work like a prescription: dose by weight, checked by a vet. Unbranded version.',
+    pie_desk='Desktop · one order, from the pet to the prescription', pie_mob='Mobile · delivery, pickup and appointments',
+    vi='A pet shop with a vet clinic across two locations, shipping nationwide, with the catalog as the bulk of the site. Orders and vet appointments went down separate paths.',
+    cita='“There’s a vet behind it.”',
+    idea='The same vets from the stores check every order. So the order works like a prescription: you pick the pet, its weight, and the dose goes by weight. Behind it is a dashboard with orders, appointments and each patient’s file, which flags when the next flea treatment is due.',
+    tira=['Dose by weight: the product in front of the giant word, with a weight picker|Dose goes by weight',
+          'Delivery options on mobile: motorbike, courier and pickup|Delivery, with its price',
+          'There’s a vet behind it: the prescription and its four guarantees|The prescription and who checks it',
+          'Vet services on mobile|Services, with booking',
+          'In-store appointments and the list of services|Booking at a location'],
+    ia=[('Photo cutouts', 'Thirty-nine product photos from the real catalog, background removed.', 'No generated photos: they’re their products.'),
+        ('Claude Code', 'Prescription-style ordering, booking with availability, and a five-tab dashboard with each patient’s file.', 'The 1.3–2.5 kg range was being saved as 13–25: I found it and fixed it.'),
+        ('Calculator', 'For the meeting: how much slips away each month in missed reorders and staff hours, with their own numbers.', 'It stores the values in the link, so it can be sent afterwards.')],
+    tablero_titulo='By the numbers',
+    numeros=[('Products with photos', '37'), ('Dashboard tabs', '5'), ('Sample patient files', '8'), ('Connected flows', '3')],
+    tablero_pie='Orders, booking and dashboard share data: what’s ordered on the site shows up in the dashboard.'),
+
+  'end2end': dict(nombre='END 2 END', etiqueta=CONCEPT, rubro='B2B · iGaming',
+    descripcion='English-language B2B site for a multiplayer bingo provider: a bingo room that plays itself and the trade-show schedule as a bingo card.',
+    bajada='Multiplayer bingo for operators. The trade-show schedule is a bingo card.',
+    pie_desk='Desktop · the products, running', pie_mob='Mobile · in English, for the trade show',
+    vi='A provider of multiplayer bingo, player accounts and iLottery, with nine licenses and in the market since 2005, and a site that didn’t show the product working. ICE Barcelona is in January 2027: the show where the year’s meetings get booked.',
+    cita='“End to end, literally.”',
+    idea='With their own player account platform, the name is finally true: from the ball draw to the payout, in one integration. The hero shows a 90-ball room that plays itself, and the trade-show schedule is a bingo card: booking a meeting means marking a square.',
+    tira=['Product stack: multiplayer bingo and player accounts, with studio images|The products, stacked',
+          'The iLottery card on mobile|iLottery, on mobile',
+          'A press quote from ICE London 2024 with one word as a sticker|The press, with its quote',
+          'Press notes on mobile|Industry news',
+          'Real trade-show photos and the button to book a meeting at ICE Barcelona|Trade shows, with real photos'],
+    ia=[('Gemini', 'Eight studio images: resin balls, the logo chip and backgrounds.', 'The balls came out without numbers on purpose. I placed the logo’s “2” in code, warped to the measured ellipse of the chip.'),
+        ('Claude Code', 'The bingo room that plays itself, eight live screens and the trade-show schedule as a card.', 'The taken slots on the card are samples, and it says so.'),
+        ('Dropped', 'A generated video and the share image.', 'The video was an almost-still card; the image drew the chip hollow.')],
+    tablero_titulo='By the numbers',
+    numeros=[('Balls in the live room', '90'), ('Screens in the carousel', '8'), ('Slots on the card', '27'), ('Days of the show', '3')],
+    tablero_pie='The card: 3 rows for the days of ICE, 9 columns for the 45-minute slots.'),
+
+  'perro': dict(nombre='Perro', etiqueta=CONCEPT, rubro='Food',
+    descripcion='A hot dog joint with a punk-zine voice: printed collage, the bun and the sausage before any price, and a squirt of mustard that navigates the page.',
+    bajada='A hot dog joint with a punk-zine voice. Two things matter: the bun and the sausage.',
+    pie_desk='Desktop · a zine cover', pie_mob='Mobile · a two-minute decision',
+    vi='A hot dog joint with two things of its own, the bun and the sausage, that charges more than a corner-store hot dog and less than any other dinner. The trap in this category is the 1950s American diner: chrome, gingham and neon.',
+    cita='“Yes, it costs more than a corner-store hot dog.”',
+    idea='Objection number one is what’s so special about it, so the bun and the sausage get explained before any price. The voice is a punk zine, the page is a printed collage, and a squirt of mustard marks your progress and works as navigation.',
+    tira=['There are five, not twenty: the short menu with cut-out photos|The menu: five hot dogs',
+          'Combos on mobile, as pasted cut-outs|The combos',
+          'Combos as pasted tickets with prices, and the price section|Prices only after the bun',
+          'Address and hours on mobile|Where and when',
+          'The manifesto on paper pasted over a photo|The manifesto'],
+    ia=[('APImart', 'Eight generations for the collage, US$0.21 in total, and 19 cutouts.', 'The logo is typographic: a generated one would have been worse.'),
+        ('Claude Code', 'The dense page as a zine cover, with the squirt of mustard as progress.', 'The label above each heading was a template: I redid it with four shapes, none in more than 3 of the 7 sections.'),
+        ('Data', 'Sample address, hours and prices, anchored to real prices in the category.', 'It’s stated in a strip at the top of the page.')],
+    tablero_titulo='By the numbers',
+    numeros=[('Dollars on images', '0.21'), ('Collage cutouts', '19'), ('Section shapes', '4'), ('QA criteria passed', '11/11')],
+    tablero_pie='Checked at 375, 390 and 768 px: four bugs found and fixed.'),
+}
+
+# Textos fijos de la plantilla, por idioma.
+UI = {
+  'es': dict(lang='es', locale='es_AR', inlang='es-AR', dir='trabajos/', raiz='../', anclas=('trabajos', 'sobre-mi', 'sistema', 'contacto'),
+    saltar='Ir al contenido', principal='Principal', nav=('Trabajos', 'Sobre mí', 'El sistema'), hablemos='Hablemos',
+    idioma='Idioma', volver='← Trabajos', ficha='Ficha', ver='Ver el sitio', pantallas='El sitio andando, en escritorio y en celular',
+    dos='Lo que vi y la idea', vi='Lo que vi', idea='La idea', tira='Por dentro', capturas='Capturas del sitio',
+    planilla='Cómo usé <em>IA</em>', cols=('Herramienta', 'Para qué', 'Lo que corregí a mano'), siguiente='Siguiente trabajo',
+    puesto='<strong>¿Tenés un puesto?</strong> Escribime por LinkedIn.', mail='<strong>¿Preferís mail?</strong>',
+    sitio='Sitio', redes='Redes', firma='Este sitio salió del mismo sistema que los ocho trabajos.', en_espanol=None),
+  'en': dict(lang='en', locale='en_US', inlang='en', dir='en/work/', raiz='../../', anclas=('work', 'about', 'system', 'contact'),
+    saltar='Skip to content', principal='Main', nav=('Work', 'About', 'The system'), hablemos='Let’s talk',
+    idioma='Language', volver='← Work', ficha='Details', ver='Visit the site', pantallas='The site running, on desktop and mobile',
+    dos='What I saw and the idea', vi='What I saw', idea='The idea', tira='Inside', capturas='Screenshots of the site',
+    planilla='How I used <em>AI</em>', cols=('Tool', 'What for', 'What I fixed by hand'), siguiente='Next project',
+    puesto='<strong>Hiring?</strong> Message me on LinkedIn.', mail='<strong>Prefer email?</strong>',
+    sitio='Site', redes='Social', firma='This site came out of the same system as the eight projects.', en_espanol='Site in Spanish'),
+}
+
+
+def en(c):
+    """El caso en inglés: los textos de EN sobre los datos del español."""
+    t = EN[c['slug']]
+    d = {**c, **{k: v for k, v in t.items() if k != 'tira'}}
+    d['tira'] = [(tipo, f, *t['tira'][i].split('|')) for i, (tipo, f, _, _) in enumerate(c['tira'])]
+    return d
+
 FAVICON = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231c1814'/%3E%3Ctext x='5' y='24' font-family='Arial Black,sans-serif' font-weight='900' font-size='21' fill='%23f1efe9'%3EM%3C/text%3E%3Ccircle cx='26' cy='22' r='3' fill='%23F85003'/%3E%3C/svg%3E"
 e = escape
 
 
-def datos(c):
+def datos(c, L):
     import json
     d = {'@context': 'https://schema.org', '@type': 'CreativeWork', 'name': c['nombre'], 'description': c['descripcion'],
-         'url': f"{BASE}trabajos/{c['slug']}.html", 'image': f"{BASE}og/{c['slug']}.jpg", 'dateCreated': '2026',
-         'genre': c['etiqueta'], 'inLanguage': 'es-AR',
+         'url': f"{BASE}{L['dir']}{c['slug']}.html", 'image': f"{BASE}og/{og(c, L)}.jpg", 'dateCreated': '2026',
+         'genre': c['etiqueta'], 'inLanguage': L['inlang'],
          'creator': {'@type': 'Person', 'name': 'Max del Caño', 'url': BASE}}
     if c['link']: d['sameAs'] = c['link']
     return json.dumps(d, ensure_ascii=False)
 
 
-def escena(c, tipo):
+def og(c, L):
+    return c['slug'] if L['lang'] == 'es' else f"en-{c['slug']}"
+
+
+def escena(c, tipo, L):
     vista, pagina = ('desk', c['desk']) if tipo == 'notebook' else ('mob', c['mob'])
     pie = c['pie_desk'] if tipo == 'notebook' else c['pie_mob']
-    m = f"../media/{c['slug']}/{vista}-{pagina}"
+    m = f"{L['raiz']}media/{c['slug']}/{vista}-{pagina}"
     return f'''      <figure>
         <div class="escena" data-clave="{c['slug']}-{tipo}" data-tipo="{tipo}">
-          <img src="../escenas/{c['slug']}-{tipo}.webp" alt="" draggable="false">
+          <img src="{L['raiz']}escenas/{c['slug']}-{tipo}.webp" alt="" draggable="false">
           <div class="pantalla"><video poster="{m}-fold.webp" data-src="{m}.mp4" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video></div>
         </div>
         <figcaption>{e(pie)}</figcaption>
       </figure>'''
 
 
-def pagina(c, sig):
-    cliente = c['etiqueta'].startswith('Cliente')
+def pagina(c, sig, L):
+    cliente = c['etiqueta'].startswith('Client')
     if c['link']:
-        accion = f'<a class="boton boton-lleno" href="{c["link"]}" target="_blank" rel="noopener">Ver el sitio <span class="flechita" aria-hidden="true">↗</span></a>'
+        accion = f'<a class="boton boton-lleno" href="{c["link"]}" target="_blank" rel="noopener">{L['ver']} <span class="flechita" aria-hidden="true">↗</span></a>'
     else:
         accion = f'<p class="sin-link">{e(c["sin_link"])}</p>'
     tira = '\n'.join(
-        f'        <figure class="{t}"><img src="../media/{c["slug"]}/{f}.webp" alt="{e(alt)}" loading="lazy"><figcaption>{e(pie)}</figcaption></figure>'
+        f'        <figure class="{t}"><img src="{L['raiz']}media/{c["slug"]}/{f}.webp" alt="{e(alt)}" loading="lazy"><figcaption>{e(pie)}</figcaption></figure>'
         for t, f, alt, pie in c['tira'])
     ia = '\n'.join(f'          <tr><th scope="row">{e(h)}</th><td>{e(a)}</td><td>{e(b)}</td></tr>' for h, a, b in c['ia'])
+    tr, so, si, co = L['anclas']
+    url = lambda l, slug=c['slug']: f"{BASE}{UI[l]['dir']}{slug}.html"
+    if L['lang'] == 'es':
+        idioma = f'<p class="idioma" aria-label="{L["idioma"]}"><span>ES</span>·<a href="../en/work/{c["slug"]}.html" hreflang="en" lang="en">EN</a></p>'
+    else:
+        idioma = f'<p class="idioma" aria-label="{L["idioma"]}"><a href="../../trabajos/{c["slug"]}.html" hreflang="es" lang="es">ES</a>·<span>EN</span></p>'
+    espanol = f'\n        <li>{L["en_espanol"]}</li>' if L['en_espanol'] and c['slug'] != 'end2end' else ''
+    n1, n2, n3 = L['nav']
     nums = '\n'.join(f'        <div><dt>{e(k)}</dt><dd>{e(v)}</dd></div>' for k, v in c['numeros'])
     return f'''<!doctype html>
-<html lang="es">
+<html lang="{L['lang']}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -260,50 +456,54 @@ def pagina(c, sig):
   <meta name="description" content="{e(c['descripcion'])}">
   <meta name="theme-color" content="#f1efe9">
   <link rel="icon" href="{FAVICON}">
-  <link rel="canonical" href="{BASE}trabajos/{c['slug']}.html">
+  <link rel="canonical" href="{url(L['lang'])}">
+  <link rel="alternate" hreflang="es" href="{url('es')}">
+  <link rel="alternate" hreflang="en" href="{url('en')}">
+  <link rel="alternate" hreflang="x-default" href="{url('es')}">
   <meta property="og:type" content="article">
-  <meta property="og:locale" content="es_AR">
+  <meta property="og:locale" content="{L['locale']}">
   <meta property="og:site_name" content="Max del Caño">
   <meta property="og:title" content="{e(c['nombre'])} — Max del Caño">
   <meta property="og:description" content="{e(c['descripcion'])}">
-  <meta property="og:url" content="{BASE}trabajos/{c['slug']}.html">
-  <meta property="og:image" content="{BASE}og/{c['slug']}.jpg">
+  <meta property="og:url" content="{url(L['lang'])}">
+  <meta property="og:image" content="{BASE}og/{og(c, L)}.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <script type="application/ld+json">{datos(c)}</script>
-  <link rel="preload" href="../fuentes/bricolage.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="../escenas/{c['slug']}-notebook.webp" as="image">
-  <link rel="modulepreload" href="../caso.js">
-  <link rel="modulepreload" href="../pantalla.js">
-  <link rel="modulepreload" href="../escenas/pantallas.js">
-  <link rel="stylesheet" href="../estilos.css">
-  <link rel="stylesheet" href="../mov.css">
-  <link rel="stylesheet" href="../secciones.css">
-  <link rel="stylesheet" href="../caso.css">
+  <script type="application/ld+json">{datos(c, L)}</script>
+  <link rel="preload" href="{L['raiz']}fuentes/bricolage.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{L['raiz']}escenas/{c['slug']}-notebook.webp" as="image">
+  <link rel="modulepreload" href="{L['raiz']}caso.js">
+  <link rel="modulepreload" href="{L['raiz']}pantalla.js">
+  <link rel="modulepreload" href="{L['raiz']}escenas/pantallas.js">
+  <link rel="stylesheet" href="{L['raiz']}estilos.css">
+  <link rel="stylesheet" href="{L['raiz']}mov.css">
+  <link rel="stylesheet" href="{L['raiz']}secciones.css">
+  <link rel="stylesheet" href="{L['raiz']}caso.css">
 </head>
 <body>
-  <a class="saltar" href="#main">Ir al contenido</a>
+  <a class="saltar" href="#main">{L['saltar']}</a>
 
   <header class="cabecera">
     <a class="marca" href="../">Max del Caño<span class="punto">.</span></a>
-    <nav aria-label="Principal">
+    <nav aria-label="{L['principal']}">
       <ul>
-        <li><a href="../#trabajos">Trabajos</a></li>
-        <li><a href="../#sobre-mi">Sobre mí</a></li>
-        <li><a href="../#sistema">El sistema</a></li>
+        <li><a href="../#{tr}">{n1}</a></li>
+        <li><a href="../#{so}">{n2}</a></li>
+        <li><a href="../#{si}">{n3}</a></li>
       </ul>
     </nav>
-    <a class="boton boton-lleno boton-chico" href="#contacto">Hablemos</a>
+    {idioma}
+    <a class="boton boton-lleno boton-chico" href="#{co}">{L['hablemos']}</a>
   </header>
 
   <main id="main" tabindex="-1">
     <section class="caso-portada">
-      <a class="volver" href="../#trabajos">← Trabajos</a>
-      <ul class="pastillas" aria-label="Ficha">
+      <a class="volver" href="../#{tr}">{L['volver']}</a>
+      <ul class="pastillas" aria-label="{L['ficha']}">
         <li{' class="pastilla-cliente"' if cliente else ''}>{e(c['etiqueta'])}</li>
         <li>{e(c['rubro'])}</li>
-        <li>2026</li>
+        <li>2026</li>{espanol}
       </ul>
       <h1 class="caso-titulo">{e(c['nombre'])}<span class="punto">.</span></h1>
       <div class="caso-bajada">
@@ -312,34 +512,34 @@ def pagina(c, sig):
       </div>
     </section>
 
-    <section class="pantallas" aria-label="El sitio andando, en escritorio y en celular">
-{escena(c, 'notebook')}
-{escena(c, 'celular')}
+    <section class="pantallas" aria-label="{L['pantallas']}">
+{escena(c, 'notebook', L)}
+{escena(c, 'celular', L)}
     </section>
 
-    <section class="dos-tiempos" aria-label="Lo que vi y la idea">
+    <section class="dos-tiempos" aria-label="{L['dos']}">
       <div>
-        <h2 class="rotulo">Lo que vi</h2>
+        <h2 class="rotulo">{L['vi']}</h2>
         <p>{e(c['vi'])}</p>
       </div>
       <div>
-        <h2 class="rotulo">La idea</h2>
+        <h2 class="rotulo">{L['idea']}</h2>
         <p class="cita">{e(c['cita'])}</p>
         <p>{e(c['idea'])}</p>
       </div>
     </section>
 
     <section class="tira" aria-labelledby="tira-titulo">
-      <h2 class="tira-titulo" id="tira-titulo">Por dentro</h2>
-      <div class="tira-fila" tabindex="0" aria-label="Capturas del sitio">
+      <h2 class="tira-titulo" id="tira-titulo">{L['tira']}</h2>
+      <div class="tira-fila" tabindex="0" aria-label="{L['capturas']}">
 {tira}
       </div>
     </section>
 
     <section class="planilla" aria-labelledby="planilla-titulo">
-      <h2 class="planilla-titulo" id="planilla-titulo">Cómo usé <em>IA</em></h2>
+      <h2 class="planilla-titulo" id="planilla-titulo">{L['planilla']}</h2>
       <table>
-        <thead><tr><th scope="col">Herramienta</th><th scope="col">Para qué</th><th scope="col">Lo que corregí a mano</th></tr></thead>
+        <thead><tr>{''.join(f'<th scope="col">{x}</th>' for x in L['cols'])}</tr></thead>
         <tbody>
 {ia}
         </tbody>
@@ -355,36 +555,36 @@ def pagina(c, sig):
     </section>
 
     <a class="siguiente" href="{sig['slug']}.html">
-      <span class="rotulo">Siguiente trabajo</span>
+      <span class="rotulo">{L['siguiente']}</span>
       <span class="siguiente-nombre">{e(sig['nombre'])} <span aria-hidden="true">→</span></span>
     </a>
   </main>
 
-  <footer class="cierre cierre-corto" id="contacto">
+  <footer class="cierre cierre-corto" id="{co}">
     <div class="cierre-pastillas">
       <a class="pastilla pastilla-llena" href="https://linkedin.com/in/maximilianodc" target="_blank" rel="noopener">
         <span class="pastilla-flecha" aria-hidden="true">↗</span>
-        <span><strong>¿Tenés un puesto?</strong> Escribime por LinkedIn.</span>
+        <span>{L['puesto']}</span>
       </a>
       <a class="pastilla pastilla-borde" href="mailto:mxmlndc@gmail.com">
         <span class="pastilla-flecha" aria-hidden="true">↗</span>
-        <span><strong>¿Preferís mail?</strong> mxmlndc@gmail.com</span>
+        <span>{L['mail']} mxmlndc@gmail.com</span>
       </a>
     </div>
     <div class="cierre-pie">
-      <nav aria-label="Sitio">
-        <p class="rotulo">Sitio</p>
-        <ul><li><a href="../#trabajos">Trabajos</a></li><li><a href="../#sobre-mi">Sobre mí</a></li><li><a href="../#sistema">El sistema</a></li></ul>
+      <nav aria-label="{L['sitio']}">
+        <p class="rotulo">{L['sitio']}</p>
+        <ul><li><a href="../#{tr}">{n1}</a></li><li><a href="../#{so}">{n2}</a></li><li><a href="../#{si}">{n3}</a></li></ul>
       </nav>
-      <nav aria-label="Redes">
-        <p class="rotulo">Redes</p>
+      <nav aria-label="{L['redes']}">
+        <p class="rotulo">{L['redes']}</p>
         <ul><li><a href="https://linkedin.com/in/maximilianodc" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://behance.net/maximildelca" target="_blank" rel="noopener">Behance</a></li></ul>
       </nav>
-      <p class="cierre-firma">Max del Caño<span class="punto">.</span> Este sitio salió del mismo sistema que los ocho trabajos.</p>
+      <p class="cierre-firma">Max del Caño<span class="punto">.</span> {L['firma']}</p>
     </div>
   </footer>
 
-  <script src="../caso.js" type="module"></script>
+  <script src="{L['raiz']}caso.js" type="module"></script>
 </body>
 </html>
 '''
@@ -400,8 +600,10 @@ if __name__ == '__main__':
         for v, p in (('desk', c['desk']), ('mob', c['mob'])):
             if not (SRC / 'media' / c['slug'] / f'{v}-{p}.mp4').exists():
                 faltan.append(f"{c['slug']}/{v}-{p}.mp4")
-        (SRC / 'trabajos' / f"{c['slug']}.html").write_text(pagina(c, sig), encoding='utf-8')
-    urls = [BASE] + [f"{BASE}trabajos/{c['slug']}.html" for c in CASOS]
+        (SRC / 'trabajos' / f"{c['slug']}.html").write_text(pagina(c, sig, UI['es']), encoding='utf-8')
+        (SRC / 'en' / 'work').mkdir(parents=True, exist_ok=True)
+        (SRC / 'en' / 'work' / f"{c['slug']}.html").write_text(pagina(en(c), en(sig), UI['en']), encoding='utf-8')
+    urls = [BASE, f'{BASE}en/'] + [f"{BASE}{UI[l]['dir']}{c['slug']}.html" for l in UI for c in CASOS]
     (SRC / 'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
         + ''.join(f'  <url><loc>{u}</loc></url>\n' for u in urls) + '</urlset>\n', encoding='utf-8')
-    print(f'{len(CASOS)} páginas en src/trabajos/', '| faltan: ' + ', '.join(faltan) if faltan else '| todo el material existe')
+    print(f'{len(CASOS)} páginas en src/trabajos/ y src/en/work/', '| faltan: ' + ', '.join(faltan) if faltan else '| todo el material existe')

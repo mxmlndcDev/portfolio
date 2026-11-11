@@ -85,7 +85,10 @@ CASOS = [
       ('Gemini + código', 'El sándwich de milanesa desarmado, partido en 7 capas que se juntan con el scroll.', 'El corte de las capas lo hace un script, no el modelo.'),
       ('Claude Code', 'El build: la carta sale de un JSON, con sus datos estructurados para Google.', 'Cada decisión de diseño se aprobó antes, de a una.'),
     ],
-    tablero_titulo='Resultado · Lighthouse en celular, home',
+    resultados=dict(titulo='Resultado · el primer mes en línea, del 3/10 al 5/11',
+      numeros=[('Posición promedio en Google', '3,4'), ('Clics desde Google', '127'), ('Personas que entraron', '244'), ('Pedidos por WhatsApp', '5')],
+      pie='Antes, Google mostraba notas de sushi de la plantilla vieja. Los 5 pedidos salieron de la barra fija del celular y ninguno del armador de lunch: la barra funciona, y el lunch necesita su propia puerta. Cada botón se mide por separado en Google Analytics.'),
+    tablero_titulo='Lighthouse en celular, home',
     numeros=[('Rendimiento', '98'), ('Accesibilidad', '100'), ('Buenas prácticas', '100'), ('SEO', '100')],
     tablero_pie='En línea desde el 2 de octubre de 2026 en fredyrestobar.com.ar. La carta da 100 en las cuatro. Dominio, DNS, Search Console y medición de cada botón, también a cargo mío.'),
 
@@ -270,7 +273,10 @@ EN = {
         ('Gemini', 'Eleven edits of real photos of the shop and its products.', 'I checked every sign zoomed in: in one, it had changed “1989” to “1985”.'),
         ('Gemini + code', 'The milanesa sandwich taken apart into 7 layers that come together as you scroll.', 'The layers are cut by a script, not the model.'),
         ('Claude Code', 'The build: the menu comes from a JSON file, with structured data for Google.', 'Every design decision was approved first, one at a time.')],
-    tablero_titulo='Result · Lighthouse on mobile, home page',
+    resultados=dict(titulo='Result · first month live, Oct 3 to Nov 5',
+      numeros=[('Average Google position', '3.4'), ('Clicks from Google', '127'), ('People who visited', '244'), ('WhatsApp orders', '5')],
+      pie='Before, Google showed sushi posts from the old template. All 5 orders came from the sticky bar on mobile and none from the catering builder: the bar works, and catering needs its own way in. Every button is tracked separately in Google Analytics.'),
+    tablero_titulo='Lighthouse on mobile, home page',
     numeros=[('Performance', '98'), ('Accessibility', '100'), ('Best practices', '100'), ('SEO', '100')],
     tablero_pie='Live since October 2, 2026 at fredyrestobar.com.ar. The menu page scores 100 on all four. Domain, DNS, Search Console and tracking on every button were on me too.'),
 
@@ -447,6 +453,16 @@ def pagina(c, sig, L):
     espanol = f'\n        <li>{L["en_espanol"]}</li>' if L['en_espanol'] and c['slug'] != 'end2end' else ''
     n1, n2, n3 = L['nav']
     nums = '\n'.join(f'        <div><dt>{e(k)}</dt><dd>{e(v)}</dd></div>' for k, v in c['numeros'])
+    r = c.get('resultados')
+    resultados = '' if not r else f'''    <section class="tablero" aria-labelledby="resultados-titulo">
+      <h2 class="rotulo" id="resultados-titulo">{e(r['titulo'])}</h2>
+      <dl class="tablero-numeros">
+''' + '\n'.join(f'        <div><dt>{e(k)}</dt><dd>{e(v)}</dd></div>' for k, v in r['numeros']) + f'''
+      </dl>
+      <p class="tablero-pie">{e(r['pie'])}</p>
+    </section>
+
+'''
     return f'''<!doctype html>
 <html lang="{L['lang']}">
 <head>
@@ -546,7 +562,7 @@ def pagina(c, sig, L):
       </table>
     </section>
 
-    <section class="tablero" aria-labelledby="tablero-titulo">
+{resultados}    <section class="tablero" aria-labelledby="tablero-titulo">
       <h2 class="rotulo" id="tablero-titulo">{e(c['tablero_titulo'])}</h2>
       <dl class="tablero-numeros">
 {nums}

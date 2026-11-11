@@ -21,8 +21,8 @@ const TRABAJOS = [
     texto: EN ? 'Yachts, helicopter and private jet from one company. The hero drops from sky to water as you scroll.'
       : 'Yates, helicóptero y avión privado con una sola empresa. La portada baja del cielo al agua mientras hacés scroll.' },
   { slug: 'fredy', nombre: 'Fredy restobar', tipo: CLIENTE, escena: 'notebook', ancho: '36vw', baja: '4vh',
-    texto: EN ? 'Live site with a menu and a catering quote builder. Lighthouse 98 / 100 / 100 / 100 on mobile.'
-      : 'Sitio en producción con carta y cotizador de bandejas. Lighthouse 98 / 100 / 100 / 100 en celular.' },
+    texto: EN ? 'Live client site. Average Google position 3.4 in its first month, and Lighthouse 98 on mobile.'
+      : 'Sitio en producción. Posición promedio 3,4 en Google en su primer mes, y Lighthouse 98 en celular.' },
   { slug: 'peluqueria', nombre: EN ? 'Dog groomer' : 'Peluquería canina', tipo: CONCEPTO, escena: 'notebook', ancho: '36vw',
     texto: EN ? 'WhatsApp booking and an AI-made 3D illustration for every cut.'
       : 'Turnos por WhatsApp e ilustraciones 3D hechas con IA para cada corte.' },
@@ -183,4 +183,5 @@ cinta.addEventListener('keydown', (e) => {
 });
 
 // Arranca con Delta en el centro (en escritorio queda Catalonia a la izquierda, como en el fold).
-requestAnimationFrame(() => { irA(1, false); buscarCentro(); });
+// En inglés arranca en Fredy: es el cliente real, con resultados, para los puestos de afuera.
+requestAnimationFrame(() => { irA(EN ? 2 : 1, false); buscarCentro(); });

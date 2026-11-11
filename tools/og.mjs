@@ -5,7 +5,7 @@ import { execFileSync } from 'node:child_process';
 import { mkdirSync } from 'node:fs';
 const FFMPEG = '/Users/mxmlndc/onda-motion/node_modules/ffmpeg-static/ffmpeg';
 const OUT = '/Users/mxmlndc/portfolio/src/og';
-const SLUGS = ['catalonia', 'delta', 'fredy', 'peluqueria', 'evelia', 'petshop', 'end2end', 'perro'];
+const SLUGS = ['catalonia', 'delta', 'fredy', 'peluqueria', 'evelia', 'petshop', 'end2end', 'perro', 'whatsapp'];
 mkdirSync(OUT, { recursive: true });
 const b = await chromium.launch({ channel: 'chrome' });
 const ctx = await b.newContext({ viewport: { width: 1680, height: 882 }, reducedMotion: 'reduce' });

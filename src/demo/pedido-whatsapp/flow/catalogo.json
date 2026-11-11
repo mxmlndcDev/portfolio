@@ -1,0 +1,236 @@
+{
+  "paso": 3,
+  "minimo": 6,
+  "grupos": {
+    "casa": "De la casa",
+    "clasicos": "Clásicos",
+    "jamon": "Con jamón",
+    "atun": "Con atún",
+    "queso": "Con queso",
+    "cantimpalo": "Con cantimpalo"
+  },
+  "sabores": [
+    {
+      "id": "Crudo en pan negro",
+      "grupo": "casa",
+      "precio": 17000,
+      "nuevo": false
+    },
+    {
+      "id": "Milanesa",
+      "grupo": "casa",
+      "precio": 18000,
+      "nuevo": true
+    },
+    {
+      "id": "Jamón y huevo",
+      "grupo": "clasicos",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Jamón y palmitos",
+      "grupo": "clasicos",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Jamón y queso",
+      "grupo": "clasicos",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Jamón y aceituna",
+      "grupo": "jamon",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Jamón y ananá",
+      "grupo": "jamon",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Jamón y berenjena",
+      "grupo": "jamon",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Jamón y choclo",
+      "grupo": "jamon",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Jamón y lechuga",
+      "grupo": "jamon",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Jamón y morrón",
+      "grupo": "jamon",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Jamón y tomate",
+      "grupo": "jamon",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Jamón, aceituna y huevo",
+      "grupo": "jamon",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Jamón, huevo y queso",
+      "grupo": "jamon",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Jamón, morrón y huevo",
+      "grupo": "jamon",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Jamón, morrón, huevo, aceituna",
+      "grupo": "jamon",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Jamón, roquefort con huevo",
+      "grupo": "jamon",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Jamón, roquefort y apio",
+      "grupo": "jamon",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Jamón, tomate y aceitunas",
+      "grupo": "jamon",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Jamón, tomate y huevo",
+      "grupo": "jamon",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Jamón, tomate y lechuga",
+      "grupo": "jamon",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Jamón, tomate y queso",
+      "grupo": "jamon",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Jamón y atún",
+      "grupo": "atun",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Jamón, aceituna con atún",
+      "grupo": "atun",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Jamón, atún y huevo",
+      "grupo": "atun",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Jamón, lechuga con atún",
+      "grupo": "atun",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Jamón, morrón con atún",
+      "grupo": "atun",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Jamón, tomate con atún",
+      "grupo": "atun",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Queso y atún",
+      "grupo": "atun",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Queso y aceituna",
+      "grupo": "queso",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Queso y choclo",
+      "grupo": "queso",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Queso y huevo",
+      "grupo": "queso",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Queso y lechuga",
+      "grupo": "queso",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Queso y morrón",
+      "grupo": "queso",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Queso y tomate",
+      "grupo": "queso",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Cantimpalo y queso",
+      "grupo": "cantimpalo",
+      "precio": 14000,
+      "nuevo": false
+    },
+    {
+      "id": "Cantimpalo y tomate",
+      "grupo": "cantimpalo",
+      "precio": 14000,
+      "nuevo": false
+    }
+  ]
+}

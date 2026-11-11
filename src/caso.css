@@ -48,6 +48,19 @@
 .planilla tbody th { font-size: 1.2rem; font-weight: 700; width: 18%; }
 .planilla td { font-size: 1.02rem; line-height: 1.5; color: var(--grafito); width: 41%; }
 
+/* Variantes de planilla para el caso conversacional: dos columnas, y la del componente en mono. */
+.planilla.dos-col tbody th { width: 40%; font-size: 1.06rem; font-weight: 600; line-height: 1.45; }
+.planilla.dos-col td { width: 60%; }
+.planilla.controles tbody th { width: 30%; font-size: 1.06rem; font-weight: 600; }
+.planilla.controles td:last-child { font-family: var(--f-mono); font-size: .9rem; color: var(--carbon); width: 22%; }
+.planilla + .planilla { padding-top: 0; }
+
+/* ---------- demo: la captura del prototipo, que lleva al prototipo ---------- */
+.demo { padding: 0 var(--margen); }
+.demo img { display: block; width: 100%; height: auto; border-radius: var(--radio-escena); border: 1px solid var(--filete); transition: transform var(--dur) var(--curva); }
+.demo a:hover img { transform: translateY(-4px); }
+.demo figcaption { font-family: var(--f-mono); font-size: var(--t-mini); letter-spacing: .1em; text-transform: uppercase; color: var(--piedra); margin-top: 12px; }
+
 /* ---------- tablero: resultado ---------- */
 .tablero { background: var(--carbon); color: var(--tiza); padding: var(--espacio-l) var(--margen); }
 .tablero .rotulo { color: var(--acento); }

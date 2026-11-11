@@ -620,6 +620,7 @@ if __name__ == '__main__':
         (SRC / 'en' / 'work').mkdir(parents=True, exist_ok=True)
         (SRC / 'en' / 'work' / f"{c['slug']}.html").write_text(pagina(en(c), en(sig), UI['en']), encoding='utf-8')
     urls = [BASE, f'{BASE}en/'] + [f"{BASE}{UI[l]['dir']}{c['slug']}.html" for l in UI for c in CASOS]
+    urls += [f"{BASE}{UI[l]['dir']}whatsapp.html" for l in UI]   # caso aparte: tools/caso-whatsapp.py
     (SRC / 'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
         + ''.join(f'  <url><loc>{u}</loc></url>\n' for u in urls) + '</urlset>\n', encoding='utf-8')
     print(f'{len(CASOS)} páginas en src/trabajos/ y src/en/work/', '| faltan: ' + ', '.join(faltan) if faltan else '| todo el material existe')

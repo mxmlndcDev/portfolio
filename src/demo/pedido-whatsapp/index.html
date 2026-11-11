@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pedir a Fredy por WhatsApp — prototipo</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%23008069%27/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <header class="encabezado">
+    <p class="rotulo">Prototipo · interfaz declarativa y generativa en WhatsApp</p>
+    <h1>Pedir a Fredy, escribiendo.</h1>
+    <p class="bajada">El cliente escribe el pedido como le sale. Un modelo lo traduce a un formato fijo, reglas que no dependen del modelo lo controlan, y el sistema elige qué mostrar: una tarjeta para confirmar, una pregunta o el formulario de WhatsApp. A la derecha se ve cada paso.</p>
+  </header>
+
+  <main class="escena">
+    <div class="lado-telefono">
+      <div class="telefono" data-telefono>
+        <header class="chat-cab">
+          <span class="chat-atras" aria-hidden="true">‹</span>
+          <span class="chat-avatar" aria-hidden="true">F</span>
+          <span class="chat-nombre"><strong>Fredy restobar</strong><small>Cuenta de empresa</small></span>
+        </header>
+        <div class="hilo" data-hilo aria-live="polite"></div>
+        <form class="escribir" data-escribir autocomplete="off">
+          <input type="text" name="texto" placeholder="Mensaje" aria-label="Escribí un mensaje" autocomplete="off">
+          <button type="submit" aria-label="Enviar">➤</button>
+        </form>
+      </div>
+      <div class="ejemplos">
+        <p>Probá con:</p>
+        <button data-ejemplo>«mandame una docena de jyq y media docena de atún a Laprida 1250, para las 13»</button>
+        <button data-ejemplo>«quiero 6 de jamón y queso y 6 de mila, paso a retirar»</button>
+        <button data-ejemplo>«8 de queso y tomate»</button>
+        <button data-ejemplo>«hola, 3 de palmitos»</button>
+      </div>
+    </div>
+
+    <aside class="panel" aria-label="Qué pasa detrás de cada mensaje">
+      <h2>Detrás del mensaje</h2>
+      <div data-panel></div>
+    </aside>
+  </main>
+
+  <footer class="nota">En este prototipo el modelo está simulado con reglas; el formato que devuelve, los controles y los componentes son los del diseño. El formulario es el Flow JSON 7.3 real, dibujado desde el mismo archivo.</footer>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

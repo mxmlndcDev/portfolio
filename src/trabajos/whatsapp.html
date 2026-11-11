@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pedir por WhatsApp — Max del Caño</title>
+  <meta name="description" content="El pedido de Fredy adentro de WhatsApp: el cliente escribe como le sale y la IA arma una tarjeta para confirmar. Interfaz declarativa y generativa, con el razonamiento a la vista.">
+  <meta name="theme-color" content="#f1efe9">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231c1814'/%3E%3Ctext x='5' y='24' font-family='Arial Black,sans-serif' font-weight='900' font-size='21' fill='%23f1efe9'%3EM%3C/text%3E%3Ccircle cx='26' cy='22' r='3' fill='%23F85003'/%3E%3C/svg%3E">
+  <link rel="canonical" href="https://mxdc.vercel.app/trabajos/whatsapp.html">
+  <link rel="alternate" hreflang="es" href="https://mxdc.vercel.app/trabajos/whatsapp.html">
+  <link rel="alternate" hreflang="en" href="https://mxdc.vercel.app/en/work/whatsapp.html">
+  <link rel="alternate" hreflang="x-default" href="https://mxdc.vercel.app/trabajos/whatsapp.html">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:site_name" content="Max del Caño">
+  <meta property="og:title" content="Pedir por WhatsApp — Max del Caño">
+  <meta property="og:description" content="El pedido de Fredy adentro de WhatsApp: el cliente escribe como le sale y la IA arma una tarjeta para confirmar. Interfaz declarativa y generativa, con el razonamiento a la vista.">
+  <meta property="og:url" content="https://mxdc.vercel.app/trabajos/whatsapp.html">
+  <meta property="og:image" content="https://mxdc.vercel.app/og/whatsapp.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CreativeWork", "name": "Pedir por WhatsApp", "description": "El pedido de Fredy adentro de WhatsApp: el cliente escribe como le sale y la IA arma una tarjeta para confirmar. Interfaz declarativa y generativa, con el razonamiento a la vista.", "url": "https://mxdc.vercel.app/trabajos/whatsapp.html", "image": "https://mxdc.vercel.app/og/whatsapp.jpg", "dateCreated": "2026", "genre": "Prototipo · no encargado", "inLanguage": "es-AR", "creator": {"@type": "Person", "name": "Max del Caño", "url": "https://mxdc.vercel.app/"}, "sameAs": "https://mxdc.vercel.app/demo/pedido-whatsapp/"}</script>
+  <link rel="preload" href="../fuentes/bricolage.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../estilos.css">
+  <link rel="stylesheet" href="../mov.css">
+  <link rel="stylesheet" href="../secciones.css">
+  <link rel="stylesheet" href="../caso.css">
+</head>
+<body>
+  <a class="saltar" href="#main">Ir al contenido</a>
+
+  <header class="cabecera">
+    <a class="marca" href="../">Max del Caño<span class="punto">.</span></a>
+    <nav aria-label="Principal">
+      <ul>
+        <li><a href="../#trabajos">Trabajos</a></li>
+        <li><a href="../#sobre-mi">Sobre mí</a></li>
+        <li><a href="../#sistema">El sistema</a></li>
+      </ul>
+    </nav>
+    <p class="idioma" aria-label="Idioma"><span>ES</span>·<a href="../en/work/whatsapp.html" hreflang="en" lang="en">EN</a></p>
+    <a class="boton boton-lleno boton-chico" href="#contacto">Hablemos</a>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="caso-portada">
+      <a class="volver" href="../#trabajos">← Trabajos</a>
+      <ul class="pastillas" aria-label="Ficha">
+        <li>Prototipo · no encargado</li>
+        <li>IA conversacional</li>
+        <li>2026</li>
+      </ul>
+      <h1 class="caso-titulo">Pedir por WhatsApp<span class="punto">.</span></h1>
+      <div class="caso-bajada">
+        <p>El pedido de Fredy, adentro de WhatsApp. El cliente escribe como le sale y la IA arma una tarjeta para confirmar. Lo que diseñé es qué puede componer el modelo, qué queda fijo y cómo se recupera cuando se equivoca.</p>
+        <a class="boton boton-lleno" href="../demo/pedido-whatsapp/" target="_blank" rel="noopener">Probar el prototipo <span class="flechita" aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    <figure class="demo">
+      <a href="../demo/pedido-whatsapp/" target="_blank" rel="noopener"><img src="../media/whatsapp/demo-es.webp" width="1600" height="884" alt="El prototipo: el chat de WhatsApp con la tarjeta del pedido y, al costado, el JSON del modelo y los controles que pasó"></a>
+      <figcaption>Prototipo · a la derecha, lo que pasa detrás de cada mensaje</figcaption>
+    </figure>
+
+    <section class="dos-tiempos" aria-label="Lo que vi y la idea">
+      <div>
+        <h2 class="rotulo">Lo que vi</h2>
+        <p>El sitio de Fredy funciona: en su primer mes, los 5 pedidos por WhatsApp salieron de la barra fija del celular. Pero el sitio es un desvío. Arma un mensaje que el cliente podría escribir directo en WhatsApp, y a Fredy le llega como texto suelto que confirma a mano.</p>
+      </div>
+      <div>
+        <h2 class="rotulo">La idea</h2>
+        <p class="cita">«Escribilo como te salga.»</p>
+        <p>Llevar el pedido adonde ya está la conversación, en dos capas. Una fija: el formulario de WhatsApp (Flow) con las reglas del negocio. Otra generativa: un modelo que traduce el texto libre a un formato cerrado. El modelo propone; las reglas y el cliente deciden. Si algo sale mal, siempre queda el formulario.</p>
+      </div>
+    </section>
+
+    <section class="planilla dos-col" aria-labelledby="ia-titulo">
+      <h2 class="planilla-titulo" id="ia-titulo">Qué decide la <em>IA</em></h2>
+      <table>
+        <thead><tr><th scope="col">El modelo puede</th><th scope="col">El modelo no puede</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Entender «jyq», «mila», «una docena», «a Laprida 1250», «para las 13»</th><td>Nombrar un sabor que no está en la carta</td></tr>
+          <tr><th scope="row">Proponer sabores, cantidades, entrega y hora</th><td>Calcular el precio: sale de la carta</td></tr>
+          <tr><th scope="row">Marcar una duda, con sus candidatos</th><td>Elegir entre candidatos: le pregunta al cliente</td></tr>
+          <tr><th scope="row">Devolver siempre el mismo formato</th><td>Confirmar el pedido, ni elegir qué se muestra</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="planilla controles" aria-labelledby="ctl-titulo">
+      <h2 class="planilla-titulo" id="ctl-titulo">Controles <em>fijos</em></h2>
+      <table>
+        <thead><tr><th scope="col">Control</th><th scope="col">Si no pasa</th><th scope="col">Qué se muestra</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">El sabor está en la carta</th><td>Se descarta: no se muestra</td><td>—</td></tr>
+          <tr><th scope="row">Va de a 3</th><td>Se redondea hacia arriba y se avisa</td><td>sigue</td></tr>
+          <tr><th scope="row">Hay un solo sabor posible</th><td>Lista con los candidatos, hasta 10</td><td>elegir_sabor</td></tr>
+          <tr><th scope="row">Llega al mínimo de 6</th><td>«El mínimo es 6 y van 3. ¿Sumás 3 más?»</td><td>falta_minimo</td></tr>
+          <tr><th scope="row">Se sabe si es envío o retiro</th><td>Dos botones</td><td>elegir_entrega</td></tr>
+          <tr><th scope="row">Hay dirección, si es envío</th><td>Se pide por el chat</td><td>pedir_direccion</td></tr>
+          <tr><th scope="row">Pasa todo</th><td>Tarjeta con el total de la carta: Confirmar o Cambiar algo</td><td>tarjeta_pedido</td></tr>
+          <tr><th scope="row">No es un pedido</th><td>Abre el formulario</td><td>abrir_flow</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="tira" aria-labelledby="tira-titulo">
+      <h2 class="tira-titulo" id="tira-titulo">Por dentro</h2>
+      <div class="tira-fila" tabindex="0" aria-label="Capturas del sitio">
+        <figure class="angosta"><img src="../media/whatsapp/duda.webp" alt="«Atún» son 7 sabores: pregunta, no adivina" loading="lazy"><figcaption>«Atún» son 7 sabores: pregunta, no adivina</figcaption></figure>
+        <figure class="angosta"><img src="../media/whatsapp/lista.webp" alt="Los candidatos salen de la carta" loading="lazy"><figcaption>Los candidatos salen de la carta</figcaption></figure>
+        <figure class="angosta"><img src="../media/whatsapp/tarjeta.webp" alt="El total lo calcula la carta, no el modelo" loading="lazy"><figcaption>El total lo calcula la carta, no el modelo</figcaption></figure>
+        <figure class="angosta"><img src="../media/whatsapp/entrega.webp" alt="Envío viene marcado: los 5 pedidos medidos fueron con envío" loading="lazy"><figcaption>Envío viene marcado: los 5 pedidos medidos fueron con envío</figcaption></figure>
+        <figure class="angosta"><img src="../media/whatsapp/sabores.webp" alt="El primer sabor arranca en 6, el mínimo" loading="lazy"><figcaption>El primer sabor arranca en 6, el mínimo</figcaption></figure>
+        <figure class="angosta"><img src="../media/whatsapp/revisar.webp" alt="Lo legal va en la conversación" loading="lazy"><figcaption>Lo legal va en la conversación</figcaption></figure>
+        <figure class="ancha"><img src="../media/whatsapp/meta-editor.webp" alt="Cargado en el editor de Flows de Meta: valida con 0 errores" loading="lazy"><figcaption>Cargado en el editor de Flows de Meta: valida con 0 errores</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="planilla dos-col" aria-labelledby="lim-titulo">
+      <h2 class="planilla-titulo" id="lim-titulo">Los límites de <em>WhatsApp</em></h2>
+      <table>
+        <thead><tr><th scope="col">Límite</th><th scope="col">Cómo lo resolví</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">No hay contador + / −</th><td>Cada sabor es un par de listas: sabor y cantidad. Los 37 sabores tienen buscador y cada uno dice su grupo y su precio.</td></tr>
+          <tr><th scope="row">Las cantidades son texto: no se suman</th><td>Todo va de a 3, así que el mínimo de 6 se cumple si el primero tiene más de 3 o hay un segundo sabor. Esa condición prende el botón.</td></tr>
+          <tr><th scope="row">Sin servidor no hay listas que crezcan</th><td>Elegir un sabor abre lugar para otro, hasta 6.</td></tr>
+          <tr><th scope="row">Títulos de 30 letras</th><td>Un sabor se acortó: «Jamón, morrón, huevo, aceituna».</td></tr>
+          <tr><th scope="row">No hay pago dentro de WhatsApp en Argentina</th><td>La tarjeta dice que no se cobra nada y que Fredy confirma el total por el chat.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="tablero" aria-labelledby="tablero-titulo">
+      <h2 class="rotulo" id="tablero-titulo">Estado</h2>
+      <dl class="tablero-numeros">
+        <div><dt>Pantallas del formulario</dt><dd>3</dd></div>
+        <div><dt>Sabores de la carta</dt><dd>37</dd></div>
+        <div><dt>Errores al validar en Meta</dt><dd>0</dd></div>
+        <div><dt>Componentes posibles</dt><dd>6</dd></div>
+      </dl>
+      <p class="tablero-pie">El formulario está cargado y validado en Meta (Flow JSON 7.3). Mandarlo a un teléfono real espera la verificación del negocio. En el prototipo el modelo está simulado con reglas; el formato que devuelve, los controles y los componentes son los del diseño. Lo que sigue: un modelo real con salida estructurada al mismo formato.</p>
+    </section>
+
+    <a class="siguiente" href="fredy.html">
+      <span class="rotulo">Siguiente trabajo</span>
+      <span class="siguiente-nombre">Fredy restobar <span aria-hidden="true">→</span></span>
+    </a>
+  </main>
+
+  <footer class="cierre cierre-corto" id="contacto">
+    <div class="cierre-pastillas">
+      <a class="pastilla pastilla-llena" href="https://linkedin.com/in/maximilianodc" target="_blank" rel="noopener">
+        <span class="pastilla-flecha" aria-hidden="true">↗</span>
+        <span><strong>¿Tenés un puesto?</strong> Escribime por LinkedIn.</span>
+      </a>
+      <a class="pastilla pastilla-borde" href="mailto:mxmlndc@gmail.com">
+        <span class="pastilla-flecha" aria-hidden="true">↗</span>
+        <span><strong>¿Preferís mail?</strong> mxmlndc@gmail.com</span>
+      </a>
+    </div>
+    <div class="cierre-pie">
+      <nav aria-label="Sitio">
+        <p class="rotulo">Sitio</p>
+        <ul><li><a href="../#trabajos">Trabajos</a></li><li><a href="../#sobre-mi">Sobre mí</a></li><li><a href="../#sistema">El sistema</a></li></ul>
+      </nav>
+      <nav aria-label="Redes">
+        <p class="rotulo">Redes</p>
+        <ul><li><a href="https://linkedin.com/in/maximilianodc" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://behance.net/maximildelca" target="_blank" rel="noopener">Behance</a></li></ul>
+      </nav>
+      <p class="cierre-firma">Max del Caño<span class="punto">.</span> Este sitio salió del mismo sistema que los ocho trabajos.</p>
+    </div>
+  </footer>
+</body>
+</html>

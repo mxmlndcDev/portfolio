@@ -1,0 +1,1861 @@
+{
+  "version": "7.3",
+  "screens": [
+    {
+      "id": "ENTREGA",
+      "title": "Pedido a Fredy",
+      "layout": {
+        "type": "SingleColumnLayout",
+        "children": [
+          {
+            "type": "TextSubheading",
+            "text": "Triples de miga, con el pan que llegó hoy"
+          },
+          {
+            "type": "RadioButtonsGroup",
+            "name": "entrega",
+            "label": "¿Cómo lo querés?",
+            "required": true,
+            "init-value": "envio",
+            "data-source": [
+              {
+                "id": "envio",
+                "title": "Envío",
+                "description": "Gratis hasta 3 km del local"
+              },
+              {
+                "id": "retiro",
+                "title": "Retiro",
+                "description": "Independencia 3002, Carapachay"
+              }
+            ]
+          },
+          {
+            "type": "If",
+            "condition": "${form.entrega} == 'envio'",
+            "then": [
+              {
+                "type": "TextInput",
+                "name": "direccion",
+                "label": "Dirección",
+                "required": true,
+                "helper-text": "Calle, número y localidad. Si queda a más de 3 km, te avisamos antes."
+              }
+            ]
+          },
+          {
+            "type": "RadioButtonsGroup",
+            "name": "cuando",
+            "label": "¿Para cuándo?",
+            "required": true,
+            "init-value": "ahora",
+            "data-source": [
+              {
+                "id": "ahora",
+                "title": "Lo antes posible"
+              },
+              {
+                "id": "despues",
+                "title": "Más tarde, hoy"
+              }
+            ]
+          },
+          {
+            "type": "If",
+            "condition": "${form.cuando} == 'despues'",
+            "then": [
+              {
+                "type": "TextInput",
+                "name": "hora",
+                "label": "¿A qué hora?",
+                "required": true,
+                "helper-text": "Por ejemplo, 13:30"
+              }
+            ]
+          },
+          {
+            "type": "Footer",
+            "label": "Elegir sabores",
+            "on-click-action": {
+              "name": "navigate",
+              "next": {
+                "type": "screen",
+                "name": "SABORES"
+              },
+              "payload": {
+                "ver2": false,
+                "ver3": false,
+                "ver4": false,
+                "ver5": false,
+                "ver6": false,
+                "ver7": false
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "SABORES",
+      "title": "Sabores",
+      "data": {
+        "ver2": {
+          "type": "boolean",
+          "__example__": false
+        },
+        "ver3": {
+          "type": "boolean",
+          "__example__": false
+        },
+        "ver4": {
+          "type": "boolean",
+          "__example__": false
+        },
+        "ver5": {
+          "type": "boolean",
+          "__example__": false
+        },
+        "ver6": {
+          "type": "boolean",
+          "__example__": false
+        },
+        "ver7": {
+          "type": "boolean",
+          "__example__": false
+        }
+      },
+      "layout": {
+        "type": "SingleColumnLayout",
+        "children": [
+          {
+            "type": "TextBody",
+            "text": "Van de a 3 por sabor, se arman en el momento. Mínimo 6 en total."
+          },
+          {
+            "type": "Dropdown",
+            "name": "sabor1",
+            "label": "Sabor",
+            "data-source": [
+              {
+                "id": "Crudo en pan negro",
+                "title": "Crudo en pan negro",
+                "description": "De la casa · $17.000 los 3"
+              },
+              {
+                "id": "Milanesa",
+                "title": "Milanesa",
+                "description": "De la casa · $18.000 los 3 · Nuevo"
+              },
+              {
+                "id": "Jamón y huevo",
+                "title": "Jamón y huevo",
+                "description": "Clásicos · $14.000 los 3"
+              },
+              {
+                "id": "Jamón y palmitos",
+                "title": "Jamón y palmitos",
+                "description": "Clásicos · $14.000 los 3"
+              },
+              {
+                "id": "Jamón y queso",
+                "title": "Jamón y queso",
+                "description": "Clásicos · $14.000 los 3"
+              },
+              {
+                "id": "Jamón y aceituna",
+                "title": "Jamón y aceituna",
+                "description": "Con jamón · $14.000 los 3"
+              },
+              {
+                "id": "Jamón y ananá",
+                "title": "Jamón y ananá",
+                "description": "Con jamón · $14.000 los 3"
+              },
+              {
+                "id": "Jamón y berenjena",
+                "title": "Jamón y berenjena",
+                "description": "Con jamón · $14.000 los 3"
+              },
+              {
+                "id": "Jamón y choclo",
+                "title": "Jamón y choclo",
+                "description": "Con jamón · $14.000 los 3"
+              },
+              {
+                "id": "Jamón y lechuga",
+                "title": "Jamón y lechuga",
+                "description": "Con jamón · $14.000 los 3"
+              },
+              {
+                "id": "Jamón y morrón",
+                "title": "Jamón y morrón",
+                "description": "Con jamón · $14.000 los 3"
+              },
+              {
+                "id": "Jamón y tomate",
+                "title": "Jamón y tomate",
+                "description": "Con jamón · $14.000 los 3"
+              },
+              {
+                "id": "Jamón, aceituna y huevo",
+                "title": "Jamón, aceituna y huevo",
+                "description": "Con jamón · $14.000 los 3"
+              },
+              {
+                "id": "Jamón, huevo y queso",
+                "title": "Jamón, huevo y queso",
+                "description": "Con jamón · $14.000 los 3"
+              },
+              {
+                "id": "Jamón, morrón y huevo",
+                "title": "Jamón, morrón y huevo",
+                "description": "Con jamón · $14.000 los 3"
+              },
+              {
+                "id": "Jamón, morrón, huevo, aceituna",
+                "title": "Jamón, morrón, huevo, aceituna",
+                "description": "Con jamón · $14.000 los 3"
+              },
+              {
+                "id": "Jamón, roquefort con huevo",
+                "title": "Jamón, roquefort con huevo",
+                "description": "Con jamón · $14.000 los 3"
+              },
+              {
+                "id": "Jamón, roquefort y apio",
+                "title": "Jamón, roquefort y apio",
+                "description": "Con jamón · $14.000 los 3"
+              },
+              {
+                "id": "Jamón, tomate y aceitunas",
+                "title": "Jamón, tomate y aceitunas",
+                "description": "Con jamón · $14.000 los 3"
+              },
+              {
+                "id": "Jamón, tomate y huevo",
+                "title": "Jamón, tomate y huevo",
+                "description": "Con jamón · $14.000 los 3"
+              },
+              {
+                "id": "Jamón, tomate y lechuga",
+                "title": "Jamón, tomate y lechuga",
+                "description": "Con jamón · $14.000 los 3"
+              },
+              {
+                "id": "Jamón, tomate y queso",
+                "title": "Jamón, tomate y queso",
+                "description": "Con jamón · $14.000 los 3"
+              },
+              {
+                "id": "Jamón y atún",
+                "title": "Jamón y atún",
+                "description": "Con atún · $14.000 los 3"
+              },
+              {
+                "id": "Jamón, aceituna con atún",
+                "title": "Jamón, aceituna con atún",
+                "description": "Con atún · $14.000 los 3"
+              },
+              {
+                "id": "Jamón, atún y huevo",
+                "title": "Jamón, atún y huevo",
+                "description": "Con atún · $14.000 los 3"
+              },
+              {
+                "id": "Jamón, lechuga con atún",
+                "title": "Jamón, lechuga con atún",
+                "description": "Con atún · $14.000 los 3"
+              },
+              {
+                "id": "Jamón, morrón con atún",
+                "title": "Jamón, morrón con atún",
+                "description": "Con atún · $14.000 los 3"
+              },
+              {
+                "id": "Jamón, tomate con atún",
+                "title": "Jamón, tomate con atún",
+                "description": "Con atún · $14.000 los 3"
+              },
+              {
+                "id": "Queso y atún",
+                "title": "Queso y atún",
+                "description": "Con atún · $14.000 los 3"
+              },
+              {
+                "id": "Queso y aceituna",
+                "title": "Queso y aceituna",
+                "description": "Con queso · $14.000 los 3"
+              },
+              {
+                "id": "Queso y choclo",
+                "title": "Queso y choclo",
+                "description": "Con queso · $14.000 los 3"
+              },
+              {
+                "id": "Queso y huevo",
+                "title": "Queso y huevo",
+                "description": "Con queso · $14.000 los 3"
+              },
+              {
+                "id": "Queso y lechuga",
+                "title": "Queso y lechuga",
+                "description": "Con queso · $14.000 los 3"
+              },
+              {
+                "id": "Queso y morrón",
+                "title": "Queso y morrón",
+                "description": "Con queso · $14.000 los 3"
+              },
+              {
+                "id": "Queso y tomate",
+                "title": "Queso y tomate",
+                "description": "Con queso · $14.000 los 3"
+              },
+              {
+                "id": "Cantimpalo y queso",
+                "title": "Cantimpalo y queso",
+                "description": "Con cantimpalo · $14.000 los 3"
+              },
+              {
+                "id": "Cantimpalo y tomate",
+                "title": "Cantimpalo y tomate",
+                "description": "Con cantimpalo · $14.000 los 3"
+              }
+            ],
+            "required": true,
+            "on-select-action": {
+              "name": "update_data",
+              "payload": {
+                "ver2": true
+              }
+            }
+          },
+          {
+            "type": "Dropdown",
+            "name": "cant1",
+            "label": "Cantidad",
+            "data-source": [
+              {
+                "id": "3",
+                "title": "3 triples"
+              },
+              {
+                "id": "6",
+                "title": "6 triples",
+                "description": "Media docena"
+              },
+              {
+                "id": "9",
+                "title": "9 triples"
+              },
+              {
+                "id": "12",
+                "title": "12 triples"
+              },
+              {
+                "id": "15",
+                "title": "15 triples"
+              },
+              {
+                "id": "18",
+                "title": "18 triples"
+              },
+              {
+                "id": "21",
+                "title": "21 triples"
+              },
+              {
+                "id": "24",
+                "title": "24 triples"
+              },
+              {
+                "id": "27",
+                "title": "27 triples"
+              },
+              {
+                "id": "30",
+                "title": "30 triples"
+              },
+              {
+                "id": "33",
+                "title": "33 triples"
+              },
+              {
+                "id": "36",
+                "title": "36 triples"
+              }
+            ],
+            "init-value": "6",
+            "required": true
+          },
+          {
+            "type": "If",
+            "condition": "${data.ver2}",
+            "then": [
+              {
+                "type": "Dropdown",
+                "name": "sabor2",
+                "label": "Otro sabor",
+                "data-source": [
+                  {
+                    "id": "Crudo en pan negro",
+                    "title": "Crudo en pan negro",
+                    "description": "De la casa · $17.000 los 3"
+                  },
+                  {
+                    "id": "Milanesa",
+                    "title": "Milanesa",
+                    "description": "De la casa · $18.000 los 3 · Nuevo"
+                  },
+                  {
+                    "id": "Jamón y huevo",
+                    "title": "Jamón y huevo",
+                    "description": "Clásicos · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y palmitos",
+                    "title": "Jamón y palmitos",
+                    "description": "Clásicos · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y queso",
+                    "title": "Jamón y queso",
+                    "description": "Clásicos · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y aceituna",
+                    "title": "Jamón y aceituna",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y ananá",
+                    "title": "Jamón y ananá",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y berenjena",
+                    "title": "Jamón y berenjena",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y choclo",
+                    "title": "Jamón y choclo",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y lechuga",
+                    "title": "Jamón y lechuga",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y morrón",
+                    "title": "Jamón y morrón",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y tomate",
+                    "title": "Jamón y tomate",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, aceituna y huevo",
+                    "title": "Jamón, aceituna y huevo",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, huevo y queso",
+                    "title": "Jamón, huevo y queso",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, morrón y huevo",
+                    "title": "Jamón, morrón y huevo",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, morrón, huevo, aceituna",
+                    "title": "Jamón, morrón, huevo, aceituna",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, roquefort con huevo",
+                    "title": "Jamón, roquefort con huevo",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, roquefort y apio",
+                    "title": "Jamón, roquefort y apio",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, tomate y aceitunas",
+                    "title": "Jamón, tomate y aceitunas",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, tomate y huevo",
+                    "title": "Jamón, tomate y huevo",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, tomate y lechuga",
+                    "title": "Jamón, tomate y lechuga",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, tomate y queso",
+                    "title": "Jamón, tomate y queso",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y atún",
+                    "title": "Jamón y atún",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, aceituna con atún",
+                    "title": "Jamón, aceituna con atún",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, atún y huevo",
+                    "title": "Jamón, atún y huevo",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, lechuga con atún",
+                    "title": "Jamón, lechuga con atún",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, morrón con atún",
+                    "title": "Jamón, morrón con atún",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, tomate con atún",
+                    "title": "Jamón, tomate con atún",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y atún",
+                    "title": "Queso y atún",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y aceituna",
+                    "title": "Queso y aceituna",
+                    "description": "Con queso · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y choclo",
+                    "title": "Queso y choclo",
+                    "description": "Con queso · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y huevo",
+                    "title": "Queso y huevo",
+                    "description": "Con queso · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y lechuga",
+                    "title": "Queso y lechuga",
+                    "description": "Con queso · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y morrón",
+                    "title": "Queso y morrón",
+                    "description": "Con queso · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y tomate",
+                    "title": "Queso y tomate",
+                    "description": "Con queso · $14.000 los 3"
+                  },
+                  {
+                    "id": "Cantimpalo y queso",
+                    "title": "Cantimpalo y queso",
+                    "description": "Con cantimpalo · $14.000 los 3"
+                  },
+                  {
+                    "id": "Cantimpalo y tomate",
+                    "title": "Cantimpalo y tomate",
+                    "description": "Con cantimpalo · $14.000 los 3"
+                  }
+                ],
+                "required": false,
+                "on-select-action": {
+                  "name": "update_data",
+                  "payload": {
+                    "ver3": true
+                  }
+                }
+              },
+              {
+                "type": "Dropdown",
+                "name": "cant2",
+                "label": "Cantidad",
+                "data-source": [
+                  {
+                    "id": "3",
+                    "title": "3 triples"
+                  },
+                  {
+                    "id": "6",
+                    "title": "6 triples",
+                    "description": "Media docena"
+                  },
+                  {
+                    "id": "9",
+                    "title": "9 triples"
+                  },
+                  {
+                    "id": "12",
+                    "title": "12 triples"
+                  },
+                  {
+                    "id": "15",
+                    "title": "15 triples"
+                  },
+                  {
+                    "id": "18",
+                    "title": "18 triples"
+                  },
+                  {
+                    "id": "21",
+                    "title": "21 triples"
+                  },
+                  {
+                    "id": "24",
+                    "title": "24 triples"
+                  },
+                  {
+                    "id": "27",
+                    "title": "27 triples"
+                  },
+                  {
+                    "id": "30",
+                    "title": "30 triples"
+                  },
+                  {
+                    "id": "33",
+                    "title": "33 triples"
+                  },
+                  {
+                    "id": "36",
+                    "title": "36 triples"
+                  }
+                ],
+                "init-value": "3",
+                "required": false
+              }
+            ]
+          },
+          {
+            "type": "If",
+            "condition": "${data.ver3}",
+            "then": [
+              {
+                "type": "Dropdown",
+                "name": "sabor3",
+                "label": "Otro sabor",
+                "data-source": [
+                  {
+                    "id": "Crudo en pan negro",
+                    "title": "Crudo en pan negro",
+                    "description": "De la casa · $17.000 los 3"
+                  },
+                  {
+                    "id": "Milanesa",
+                    "title": "Milanesa",
+                    "description": "De la casa · $18.000 los 3 · Nuevo"
+                  },
+                  {
+                    "id": "Jamón y huevo",
+                    "title": "Jamón y huevo",
+                    "description": "Clásicos · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y palmitos",
+                    "title": "Jamón y palmitos",
+                    "description": "Clásicos · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y queso",
+                    "title": "Jamón y queso",
+                    "description": "Clásicos · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y aceituna",
+                    "title": "Jamón y aceituna",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y ananá",
+                    "title": "Jamón y ananá",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y berenjena",
+                    "title": "Jamón y berenjena",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y choclo",
+                    "title": "Jamón y choclo",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y lechuga",
+                    "title": "Jamón y lechuga",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y morrón",
+                    "title": "Jamón y morrón",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y tomate",
+                    "title": "Jamón y tomate",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, aceituna y huevo",
+                    "title": "Jamón, aceituna y huevo",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, huevo y queso",
+                    "title": "Jamón, huevo y queso",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, morrón y huevo",
+                    "title": "Jamón, morrón y huevo",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, morrón, huevo, aceituna",
+                    "title": "Jamón, morrón, huevo, aceituna",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, roquefort con huevo",
+                    "title": "Jamón, roquefort con huevo",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, roquefort y apio",
+                    "title": "Jamón, roquefort y apio",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, tomate y aceitunas",
+                    "title": "Jamón, tomate y aceitunas",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, tomate y huevo",
+                    "title": "Jamón, tomate y huevo",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, tomate y lechuga",
+                    "title": "Jamón, tomate y lechuga",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, tomate y queso",
+                    "title": "Jamón, tomate y queso",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y atún",
+                    "title": "Jamón y atún",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, aceituna con atún",
+                    "title": "Jamón, aceituna con atún",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, atún y huevo",
+                    "title": "Jamón, atún y huevo",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, lechuga con atún",
+                    "title": "Jamón, lechuga con atún",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, morrón con atún",
+                    "title": "Jamón, morrón con atún",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, tomate con atún",
+                    "title": "Jamón, tomate con atún",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y atún",
+                    "title": "Queso y atún",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y aceituna",
+                    "title": "Queso y aceituna",
+                    "description": "Con queso · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y choclo",
+                    "title": "Queso y choclo",
+                    "description": "Con queso · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y huevo",
+                    "title": "Queso y huevo",
+                    "description": "Con queso · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y lechuga",
+                    "title": "Queso y lechuga",
+                    "description": "Con queso · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y morrón",
+                    "title": "Queso y morrón",
+                    "description": "Con queso · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y tomate",
+                    "title": "Queso y tomate",
+                    "description": "Con queso · $14.000 los 3"
+                  },
+                  {
+                    "id": "Cantimpalo y queso",
+                    "title": "Cantimpalo y queso",
+                    "description": "Con cantimpalo · $14.000 los 3"
+                  },
+                  {
+                    "id": "Cantimpalo y tomate",
+                    "title": "Cantimpalo y tomate",
+                    "description": "Con cantimpalo · $14.000 los 3"
+                  }
+                ],
+                "required": false,
+                "on-select-action": {
+                  "name": "update_data",
+                  "payload": {
+                    "ver4": true
+                  }
+                }
+              },
+              {
+                "type": "Dropdown",
+                "name": "cant3",
+                "label": "Cantidad",
+                "data-source": [
+                  {
+                    "id": "3",
+                    "title": "3 triples"
+                  },
+                  {
+                    "id": "6",
+                    "title": "6 triples",
+                    "description": "Media docena"
+                  },
+                  {
+                    "id": "9",
+                    "title": "9 triples"
+                  },
+                  {
+                    "id": "12",
+                    "title": "12 triples"
+                  },
+                  {
+                    "id": "15",
+                    "title": "15 triples"
+                  },
+                  {
+                    "id": "18",
+                    "title": "18 triples"
+                  },
+                  {
+                    "id": "21",
+                    "title": "21 triples"
+                  },
+                  {
+                    "id": "24",
+                    "title": "24 triples"
+                  },
+                  {
+                    "id": "27",
+                    "title": "27 triples"
+                  },
+                  {
+                    "id": "30",
+                    "title": "30 triples"
+                  },
+                  {
+                    "id": "33",
+                    "title": "33 triples"
+                  },
+                  {
+                    "id": "36",
+                    "title": "36 triples"
+                  }
+                ],
+                "init-value": "3",
+                "required": false
+              }
+            ]
+          },
+          {
+            "type": "If",
+            "condition": "${data.ver4}",
+            "then": [
+              {
+                "type": "Dropdown",
+                "name": "sabor4",
+                "label": "Otro sabor",
+                "data-source": [
+                  {
+                    "id": "Crudo en pan negro",
+                    "title": "Crudo en pan negro",
+                    "description": "De la casa · $17.000 los 3"
+                  },
+                  {
+                    "id": "Milanesa",
+                    "title": "Milanesa",
+                    "description": "De la casa · $18.000 los 3 · Nuevo"
+                  },
+                  {
+                    "id": "Jamón y huevo",
+                    "title": "Jamón y huevo",
+                    "description": "Clásicos · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y palmitos",
+                    "title": "Jamón y palmitos",
+                    "description": "Clásicos · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y queso",
+                    "title": "Jamón y queso",
+                    "description": "Clásicos · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y aceituna",
+                    "title": "Jamón y aceituna",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y ananá",
+                    "title": "Jamón y ananá",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y berenjena",
+                    "title": "Jamón y berenjena",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y choclo",
+                    "title": "Jamón y choclo",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y lechuga",
+                    "title": "Jamón y lechuga",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y morrón",
+                    "title": "Jamón y morrón",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y tomate",
+                    "title": "Jamón y tomate",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, aceituna y huevo",
+                    "title": "Jamón, aceituna y huevo",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, huevo y queso",
+                    "title": "Jamón, huevo y queso",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, morrón y huevo",
+                    "title": "Jamón, morrón y huevo",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, morrón, huevo, aceituna",
+                    "title": "Jamón, morrón, huevo, aceituna",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, roquefort con huevo",
+                    "title": "Jamón, roquefort con huevo",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, roquefort y apio",
+                    "title": "Jamón, roquefort y apio",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, tomate y aceitunas",
+                    "title": "Jamón, tomate y aceitunas",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, tomate y huevo",
+                    "title": "Jamón, tomate y huevo",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, tomate y lechuga",
+                    "title": "Jamón, tomate y lechuga",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, tomate y queso",
+                    "title": "Jamón, tomate y queso",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y atún",
+                    "title": "Jamón y atún",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, aceituna con atún",
+                    "title": "Jamón, aceituna con atún",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, atún y huevo",
+                    "title": "Jamón, atún y huevo",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, lechuga con atún",
+                    "title": "Jamón, lechuga con atún",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, morrón con atún",
+                    "title": "Jamón, morrón con atún",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, tomate con atún",
+                    "title": "Jamón, tomate con atún",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y atún",
+                    "title": "Queso y atún",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y aceituna",
+                    "title": "Queso y aceituna",
+                    "description": "Con queso · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y choclo",
+                    "title": "Queso y choclo",
+                    "description": "Con queso · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y huevo",
+                    "title": "Queso y huevo",
+                    "description": "Con queso · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y lechuga",
+                    "title": "Queso y lechuga",
+                    "description": "Con queso · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y morrón",
+                    "title": "Queso y morrón",
+                    "description": "Con queso · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y tomate",
+                    "title": "Queso y tomate",
+                    "description": "Con queso · $14.000 los 3"
+                  },
+                  {
+                    "id": "Cantimpalo y queso",
+                    "title": "Cantimpalo y queso",
+                    "description": "Con cantimpalo · $14.000 los 3"
+                  },
+                  {
+                    "id": "Cantimpalo y tomate",
+                    "title": "Cantimpalo y tomate",
+                    "description": "Con cantimpalo · $14.000 los 3"
+                  }
+                ],
+                "required": false,
+                "on-select-action": {
+                  "name": "update_data",
+                  "payload": {
+                    "ver5": true
+                  }
+                }
+              },
+              {
+                "type": "Dropdown",
+                "name": "cant4",
+                "label": "Cantidad",
+                "data-source": [
+                  {
+                    "id": "3",
+                    "title": "3 triples"
+                  },
+                  {
+                    "id": "6",
+                    "title": "6 triples",
+                    "description": "Media docena"
+                  },
+                  {
+                    "id": "9",
+                    "title": "9 triples"
+                  },
+                  {
+                    "id": "12",
+                    "title": "12 triples"
+                  },
+                  {
+                    "id": "15",
+                    "title": "15 triples"
+                  },
+                  {
+                    "id": "18",
+                    "title": "18 triples"
+                  },
+                  {
+                    "id": "21",
+                    "title": "21 triples"
+                  },
+                  {
+                    "id": "24",
+                    "title": "24 triples"
+                  },
+                  {
+                    "id": "27",
+                    "title": "27 triples"
+                  },
+                  {
+                    "id": "30",
+                    "title": "30 triples"
+                  },
+                  {
+                    "id": "33",
+                    "title": "33 triples"
+                  },
+                  {
+                    "id": "36",
+                    "title": "36 triples"
+                  }
+                ],
+                "init-value": "3",
+                "required": false
+              }
+            ]
+          },
+          {
+            "type": "If",
+            "condition": "${data.ver5}",
+            "then": [
+              {
+                "type": "Dropdown",
+                "name": "sabor5",
+                "label": "Otro sabor",
+                "data-source": [
+                  {
+                    "id": "Crudo en pan negro",
+                    "title": "Crudo en pan negro",
+                    "description": "De la casa · $17.000 los 3"
+                  },
+                  {
+                    "id": "Milanesa",
+                    "title": "Milanesa",
+                    "description": "De la casa · $18.000 los 3 · Nuevo"
+                  },
+                  {
+                    "id": "Jamón y huevo",
+                    "title": "Jamón y huevo",
+                    "description": "Clásicos · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y palmitos",
+                    "title": "Jamón y palmitos",
+                    "description": "Clásicos · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y queso",
+                    "title": "Jamón y queso",
+                    "description": "Clásicos · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y aceituna",
+                    "title": "Jamón y aceituna",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y ananá",
+                    "title": "Jamón y ananá",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y berenjena",
+                    "title": "Jamón y berenjena",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y choclo",
+                    "title": "Jamón y choclo",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y lechuga",
+                    "title": "Jamón y lechuga",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y morrón",
+                    "title": "Jamón y morrón",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y tomate",
+                    "title": "Jamón y tomate",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, aceituna y huevo",
+                    "title": "Jamón, aceituna y huevo",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, huevo y queso",
+                    "title": "Jamón, huevo y queso",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, morrón y huevo",
+                    "title": "Jamón, morrón y huevo",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, morrón, huevo, aceituna",
+                    "title": "Jamón, morrón, huevo, aceituna",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, roquefort con huevo",
+                    "title": "Jamón, roquefort con huevo",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, roquefort y apio",
+                    "title": "Jamón, roquefort y apio",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, tomate y aceitunas",
+                    "title": "Jamón, tomate y aceitunas",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, tomate y huevo",
+                    "title": "Jamón, tomate y huevo",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, tomate y lechuga",
+                    "title": "Jamón, tomate y lechuga",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, tomate y queso",
+                    "title": "Jamón, tomate y queso",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y atún",
+                    "title": "Jamón y atún",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, aceituna con atún",
+                    "title": "Jamón, aceituna con atún",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, atún y huevo",
+                    "title": "Jamón, atún y huevo",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, lechuga con atún",
+                    "title": "Jamón, lechuga con atún",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, morrón con atún",
+                    "title": "Jamón, morrón con atún",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, tomate con atún",
+                    "title": "Jamón, tomate con atún",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y atún",
+                    "title": "Queso y atún",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y aceituna",
+                    "title": "Queso y aceituna",
+                    "description": "Con queso · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y choclo",
+                    "title": "Queso y choclo",
+                    "description": "Con queso · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y huevo",
+                    "title": "Queso y huevo",
+                    "description": "Con queso · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y lechuga",
+                    "title": "Queso y lechuga",
+                    "description": "Con queso · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y morrón",
+                    "title": "Queso y morrón",
+                    "description": "Con queso · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y tomate",
+                    "title": "Queso y tomate",
+                    "description": "Con queso · $14.000 los 3"
+                  },
+                  {
+                    "id": "Cantimpalo y queso",
+                    "title": "Cantimpalo y queso",
+                    "description": "Con cantimpalo · $14.000 los 3"
+                  },
+                  {
+                    "id": "Cantimpalo y tomate",
+                    "title": "Cantimpalo y tomate",
+                    "description": "Con cantimpalo · $14.000 los 3"
+                  }
+                ],
+                "required": false,
+                "on-select-action": {
+                  "name": "update_data",
+                  "payload": {
+                    "ver6": true
+                  }
+                }
+              },
+              {
+                "type": "Dropdown",
+                "name": "cant5",
+                "label": "Cantidad",
+                "data-source": [
+                  {
+                    "id": "3",
+                    "title": "3 triples"
+                  },
+                  {
+                    "id": "6",
+                    "title": "6 triples",
+                    "description": "Media docena"
+                  },
+                  {
+                    "id": "9",
+                    "title": "9 triples"
+                  },
+                  {
+                    "id": "12",
+                    "title": "12 triples"
+                  },
+                  {
+                    "id": "15",
+                    "title": "15 triples"
+                  },
+                  {
+                    "id": "18",
+                    "title": "18 triples"
+                  },
+                  {
+                    "id": "21",
+                    "title": "21 triples"
+                  },
+                  {
+                    "id": "24",
+                    "title": "24 triples"
+                  },
+                  {
+                    "id": "27",
+                    "title": "27 triples"
+                  },
+                  {
+                    "id": "30",
+                    "title": "30 triples"
+                  },
+                  {
+                    "id": "33",
+                    "title": "33 triples"
+                  },
+                  {
+                    "id": "36",
+                    "title": "36 triples"
+                  }
+                ],
+                "init-value": "3",
+                "required": false
+              }
+            ]
+          },
+          {
+            "type": "If",
+            "condition": "${data.ver6}",
+            "then": [
+              {
+                "type": "Dropdown",
+                "name": "sabor6",
+                "label": "Otro sabor",
+                "data-source": [
+                  {
+                    "id": "Crudo en pan negro",
+                    "title": "Crudo en pan negro",
+                    "description": "De la casa · $17.000 los 3"
+                  },
+                  {
+                    "id": "Milanesa",
+                    "title": "Milanesa",
+                    "description": "De la casa · $18.000 los 3 · Nuevo"
+                  },
+                  {
+                    "id": "Jamón y huevo",
+                    "title": "Jamón y huevo",
+                    "description": "Clásicos · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y palmitos",
+                    "title": "Jamón y palmitos",
+                    "description": "Clásicos · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y queso",
+                    "title": "Jamón y queso",
+                    "description": "Clásicos · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y aceituna",
+                    "title": "Jamón y aceituna",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y ananá",
+                    "title": "Jamón y ananá",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y berenjena",
+                    "title": "Jamón y berenjena",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y choclo",
+                    "title": "Jamón y choclo",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y lechuga",
+                    "title": "Jamón y lechuga",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y morrón",
+                    "title": "Jamón y morrón",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y tomate",
+                    "title": "Jamón y tomate",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, aceituna y huevo",
+                    "title": "Jamón, aceituna y huevo",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, huevo y queso",
+                    "title": "Jamón, huevo y queso",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, morrón y huevo",
+                    "title": "Jamón, morrón y huevo",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, morrón, huevo, aceituna",
+                    "title": "Jamón, morrón, huevo, aceituna",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, roquefort con huevo",
+                    "title": "Jamón, roquefort con huevo",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, roquefort y apio",
+                    "title": "Jamón, roquefort y apio",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, tomate y aceitunas",
+                    "title": "Jamón, tomate y aceitunas",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, tomate y huevo",
+                    "title": "Jamón, tomate y huevo",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, tomate y lechuga",
+                    "title": "Jamón, tomate y lechuga",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, tomate y queso",
+                    "title": "Jamón, tomate y queso",
+                    "description": "Con jamón · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón y atún",
+                    "title": "Jamón y atún",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, aceituna con atún",
+                    "title": "Jamón, aceituna con atún",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, atún y huevo",
+                    "title": "Jamón, atún y huevo",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, lechuga con atún",
+                    "title": "Jamón, lechuga con atún",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, morrón con atún",
+                    "title": "Jamón, morrón con atún",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Jamón, tomate con atún",
+                    "title": "Jamón, tomate con atún",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y atún",
+                    "title": "Queso y atún",
+                    "description": "Con atún · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y aceituna",
+                    "title": "Queso y aceituna",
+                    "description": "Con queso · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y choclo",
+                    "title": "Queso y choclo",
+                    "description": "Con queso · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y huevo",
+                    "title": "Queso y huevo",
+                    "description": "Con queso · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y lechuga",
+                    "title": "Queso y lechuga",
+                    "description": "Con queso · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y morrón",
+                    "title": "Queso y morrón",
+                    "description": "Con queso · $14.000 los 3"
+                  },
+                  {
+                    "id": "Queso y tomate",
+                    "title": "Queso y tomate",
+                    "description": "Con queso · $14.000 los 3"
+                  },
+                  {
+                    "id": "Cantimpalo y queso",
+                    "title": "Cantimpalo y queso",
+                    "description": "Con cantimpalo · $14.000 los 3"
+                  },
+                  {
+                    "id": "Cantimpalo y tomate",
+                    "title": "Cantimpalo y tomate",
+                    "description": "Con cantimpalo · $14.000 los 3"
+                  }
+                ],
+                "required": false,
+                "on-select-action": {
+                  "name": "update_data",
+                  "payload": {
+                    "ver7": true
+                  }
+                }
+              },
+              {
+                "type": "Dropdown",
+                "name": "cant6",
+                "label": "Cantidad",
+                "data-source": [
+                  {
+                    "id": "3",
+                    "title": "3 triples"
+                  },
+                  {
+                    "id": "6",
+                    "title": "6 triples",
+                    "description": "Media docena"
+                  },
+                  {
+                    "id": "9",
+                    "title": "9 triples"
+                  },
+                  {
+                    "id": "12",
+                    "title": "12 triples"
+                  },
+                  {
+                    "id": "15",
+                    "title": "15 triples"
+                  },
+                  {
+                    "id": "18",
+                    "title": "18 triples"
+                  },
+                  {
+                    "id": "21",
+                    "title": "21 triples"
+                  },
+                  {
+                    "id": "24",
+                    "title": "24 triples"
+                  },
+                  {
+                    "id": "27",
+                    "title": "27 triples"
+                  },
+                  {
+                    "id": "30",
+                    "title": "30 triples"
+                  },
+                  {
+                    "id": "33",
+                    "title": "33 triples"
+                  },
+                  {
+                    "id": "36",
+                    "title": "36 triples"
+                  }
+                ],
+                "init-value": "3",
+                "required": false
+              }
+            ]
+          },
+          {
+            "type": "TextCaption",
+            "text": "Con un solo sabor, pedí 6 o más.",
+            "visible": "`(${form.cant1} == '3') && (${data.ver3} == false)`"
+          },
+          {
+            "type": "Footer",
+            "label": "Revisar pedido",
+            "enabled": "`(${form.cant1} != '3') || ${data.ver3}`",
+            "on-click-action": {
+              "name": "navigate",
+              "next": {
+                "type": "screen",
+                "name": "REVISAR"
+              },
+              "payload": {}
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "REVISAR",
+      "title": "Revisá tu pedido",
+      "terminal": true,
+      "layout": {
+        "type": "SingleColumnLayout",
+        "children": [
+          {
+            "type": "TextSubheading",
+            "text": "Triples"
+          },
+          {
+            "type": "TextBody",
+            "text": "`${screen.SABORES.form.cant1} ' de ' ${screen.SABORES.form.sabor1}`"
+          },
+          {
+            "type": "If",
+            "condition": "${screen.SABORES.data.ver3}",
+            "then": [
+              {
+                "type": "TextBody",
+                "text": "`${screen.SABORES.form.cant2} ' de ' ${screen.SABORES.form.sabor2}`"
+              }
+            ]
+          },
+          {
+            "type": "If",
+            "condition": "${screen.SABORES.data.ver4}",
+            "then": [
+              {
+                "type": "TextBody",
+                "text": "`${screen.SABORES.form.cant3} ' de ' ${screen.SABORES.form.sabor3}`"
+              }
+            ]
+          },
+          {
+            "type": "If",
+            "condition": "${screen.SABORES.data.ver5}",
+            "then": [
+              {
+                "type": "TextBody",
+                "text": "`${screen.SABORES.form.cant4} ' de ' ${screen.SABORES.form.sabor4}`"
+              }
+            ]
+          },
+          {
+            "type": "If",
+            "condition": "${screen.SABORES.data.ver6}",
+            "then": [
+              {
+                "type": "TextBody",
+                "text": "`${screen.SABORES.form.cant5} ' de ' ${screen.SABORES.form.sabor5}`"
+              }
+            ]
+          },
+          {
+            "type": "If",
+            "condition": "${screen.SABORES.data.ver7}",
+            "then": [
+              {
+                "type": "TextBody",
+                "text": "`${screen.SABORES.form.cant6} ' de ' ${screen.SABORES.form.sabor6}`"
+              }
+            ]
+          },
+          {
+            "type": "TextSubheading",
+            "text": "Entrega"
+          },
+          {
+            "type": "If",
+            "condition": "${screen.ENTREGA.form.entrega} == 'envio'",
+            "then": [
+              {
+                "type": "TextBody",
+                "text": "`'Envío a ' ${screen.ENTREGA.form.direccion}`"
+              }
+            ],
+            "else": [
+              {
+                "type": "TextBody",
+                "text": "Retiro en Independencia 3002, Carapachay"
+              }
+            ]
+          },
+          {
+            "type": "If",
+            "condition": "${screen.ENTREGA.form.cuando} == 'despues'",
+            "then": [
+              {
+                "type": "TextBody",
+                "text": "`'Hoy a las ' ${screen.ENTREGA.form.hora}`"
+              }
+            ],
+            "else": [
+              {
+                "type": "TextBody",
+                "text": "Lo antes posible"
+              }
+            ]
+          },
+          {
+            "type": "TextCaption",
+            "text": "No se cobra nada en este paso. Fredy te confirma el total y la hora por este chat antes de prepararlo; ahí podés cambiar lo que quieras."
+          },
+          {
+            "type": "Footer",
+            "label": "Mandar el pedido",
+            "on-click-action": {
+              "name": "complete",
+              "payload": {
+                "entrega": "${screen.ENTREGA.form.entrega}",
+                "direccion": "${screen.ENTREGA.form.direccion}",
+                "cuando": "${screen.ENTREGA.form.cuando}",
+                "hora": "${screen.ENTREGA.form.hora}",
+                "sabor1": "${screen.SABORES.form.sabor1}",
+                "sabor2": "${screen.SABORES.form.sabor2}",
+                "sabor3": "${screen.SABORES.form.sabor3}",
+                "sabor4": "${screen.SABORES.form.sabor4}",
+                "sabor5": "${screen.SABORES.form.sabor5}",
+                "sabor6": "${screen.SABORES.form.sabor6}",
+                "cant1": "${screen.SABORES.form.cant1}",
+                "cant2": "${screen.SABORES.form.cant2}",
+                "cant3": "${screen.SABORES.form.cant3}",
+                "cant4": "${screen.SABORES.form.cant4}",
+                "cant5": "${screen.SABORES.form.cant5}",
+                "cant6": "${screen.SABORES.form.cant6}"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
